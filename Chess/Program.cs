@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace Chess
 {
     static class Program
-    {
+    { //fdfszfxcgjmkl;,h
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
