@@ -8,6 +8,7 @@ namespace Chess
 {
     static class Program
     { //fdfszfxcgjmkl;,h
+    //654654
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
