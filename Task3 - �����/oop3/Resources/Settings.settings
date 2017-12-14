@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="oop3.Resources" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="GameFieldFonePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ImagesPng/fone.png</Value>
+    </Setting>
+    <Setting Name="CellSideSize" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">41</Value>
+    </Setting>
+    <Setting Name="FrameWidth" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="FirstPlayerSimpleFigurePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Images/BlackSimple.jpg</Value>
+    </Setting>
+    <Setting Name="SecondPlayerSimpleFigurePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Images/BlueSimple.jpg</Value>
+    </Setting>
+    <Setting Name="FirstPlayerKingFigurePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Images/BlackKing.jpg</Value>
+    </Setting>
+    <Setting Name="SecondPlayerKingFigurePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Images/BlueKing.jpg</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

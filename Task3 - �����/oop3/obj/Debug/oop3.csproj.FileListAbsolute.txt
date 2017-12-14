@@ -1,0 +1,36 @@
+C:\Users\byte\Desktop\oop3\oop3\bin\Debug\oop3.exe.config
+C:\Users\byte\Desktop\oop3\oop3\obj\Debug\oop3.Properties.Resources.resources
+C:\Users\byte\Desktop\oop3\oop3\obj\Debug\oop3.csproj.GenerateResource.Cache
+C:\Users\byte\Desktop\oop3\oop3\bin\Debug\oop3.exe
+C:\Users\byte\Desktop\oop3\oop3\bin\Debug\oop3.pdb
+C:\Users\byte\Desktop\oop3\oop3\obj\Debug\oop3.exe
+C:\Users\byte\Desktop\oop3\oop3\obj\Debug\oop3.pdb
+C:\Users\byte\Desktop\oop3\oop3\obj\Debug\oop3.Form1.resources
+C:\Users\byte\Desktop\oop3\oop3\obj\Debug\oop3.csprojResolveAssemblyReference.cache
+C:\Users\byte\Desktop\ооп\oop3\oop3\bin\Debug\oop3.exe.config
+C:\Users\byte\Desktop\ооп\oop3\oop3\obj\Debug\oop3.exe
+C:\Users\byte\Desktop\ооп\oop3\oop3\obj\Debug\oop3.pdb
+C:\Users\byte\Desktop\ооп\oop3\oop3\obj\Debug\oop3.csprojResolveAssemblyReference.cache
+C:\Users\byte\Desktop\ооп\oop3\oop3\obj\Debug\oop3.Form1.resources
+C:\Users\byte\Desktop\ооп\oop3\oop3\obj\Debug\oop3.Properties.Resources.resources
+C:\Users\byte\Desktop\ооп\oop3\oop3\obj\Debug\oop3.csproj.GenerateResource.Cache
+C:\Users\byte\Desktop\ооп\oop3\oop3\bin\Debug\oop3.exe
+C:\Users\byte\Desktop\ооп\oop3\oop3\bin\Debug\oop3.pdb
+C:\Users\Андрей\Desktop\oop3\oop3\bin\Debug\oop3.exe.config
+C:\Users\Андрей\Desktop\oop3\oop3\obj\Debug\oop3.exe
+C:\Users\Андрей\Desktop\oop3\oop3\obj\Debug\oop3.pdb
+C:\Users\Андрей\Desktop\oop3\oop3\bin\Debug\oop3.exe
+C:\Users\Андрей\Desktop\oop3\oop3\bin\Debug\oop3.pdb
+C:\Users\Андрей\Desktop\oop3\oop3\obj\Debug\oop3.csprojResolveAssemblyReference.cache
+C:\Users\Андрей\Desktop\oop3\oop3\obj\Debug\oop3.Form1.resources
+C:\Users\Андрей\Desktop\oop3\oop3\obj\Debug\oop3.Properties.Resources.resources
+C:\Users\Андрей\Desktop\oop3\oop3\obj\Debug\oop3.csproj.GenerateResource.Cache
+C:\Users\kliml\Desktop\Task3 - Шашки\oop3\bin\Debug\oop3.exe.config
+C:\Users\kliml\Desktop\Task3 - Шашки\oop3\bin\Debug\oop3.exe
+C:\Users\kliml\Desktop\Task3 - Шашки\oop3\bin\Debug\oop3.pdb
+C:\Users\kliml\Desktop\Task3 - Шашки\oop3\obj\Debug\oop3.csprojResolveAssemblyReference.cache
+C:\Users\kliml\Desktop\Task3 - Шашки\oop3\obj\Debug\oop3.Form1.resources
+C:\Users\kliml\Desktop\Task3 - Шашки\oop3\obj\Debug\oop3.Properties.Resources.resources
+C:\Users\kliml\Desktop\Task3 - Шашки\oop3\obj\Debug\oop3.csproj.GenerateResource.Cache
+C:\Users\kliml\Desktop\Task3 - Шашки\oop3\obj\Debug\oop3.exe
+C:\Users\kliml\Desktop\Task3 - Шашки\oop3\obj\Debug\oop3.pdb
