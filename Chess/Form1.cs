@@ -16,5 +16,20 @@ namespace Chess
         {
             InitializeComponent();
         }
+
+        Graphics g;
+
+        public void Draw(bool IDontKnowWhyThisIsNecessary)
+        {
+            g = this.CreateGraphics();
+            Painter p = new Painter();
+            //Rectangle re = new Rectangle(0, 0, 256, 256);
+            p.Drow(g);
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Draw(true);
+        }
     }
 }
