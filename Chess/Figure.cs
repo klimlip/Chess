@@ -17,7 +17,7 @@ namespace Chess
         //public int X { get; private set; }
         //public int Y { get; private set; }
 
-        public static Point Location;
+        public Point Location;
         //public Color color;
         public static int stepCount { get; private set; }
         public Player player { get; set; }
