@@ -8,7 +8,23 @@ namespace Chess
 {
     public class Player
     {
-        public bool IsHuman { get; private set; }
+        public enum Color
+        {
+            White,
+            Black
+        }
+
+        public Color color;
+        public bool isHuman { get; private set; }  // true - first
+
+        public Player(bool isFirst)
+        {
+            this.isHuman = isFirst;
+            if (isHuman)
+                color = Color.White;
+            else
+                color = Color.Black;
+        }
 
     }
 }
