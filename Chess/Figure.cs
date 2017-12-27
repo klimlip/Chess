@@ -18,6 +18,7 @@ namespace Chess
         //public int Y { get; private set; }
 
         public Point Location;
+        public Bitmap bitmap;
         //public Color color;
         public static int stepCount { get; private set; }
         public Player player { get; set; }
@@ -28,6 +29,8 @@ namespace Chess
     {
         public Pawn(int X, int Y, Player pl)
         {
+            if(!pl.isHuman)
+                bitmap = new Bitmap("PAWN2.png");
             Location.X = X;
             Location.Y = Y;
             player = pl;
@@ -52,6 +55,8 @@ namespace Chess
     {
         public King(int X, int Y, Player pl)
         {
+            if(!pl.isHuman)
+                bitmap = new Bitmap("KING2.png");
             Location.X = X;
             Location.Y = Y;
             player = pl;
@@ -61,6 +66,8 @@ namespace Chess
     {
         public Queen(int X, int Y, Player pl)
         {
+            if (!pl.isHuman)
+                bitmap = new Bitmap("QUEEN2.png");
             Location.X = X;
             Location.Y = Y;
             player = pl;
@@ -70,6 +77,8 @@ namespace Chess
     {
         public Horse(int X, int Y, Player pl)
         {
+            if (!pl.isHuman)
+                bitmap = new Bitmap("HORSE2.png");
             Location.X = X;
             Location.Y = Y;
             player = pl;
@@ -79,6 +88,8 @@ namespace Chess
     {
         public Officer(int X, int Y, Player pl)
         {
+            if (!pl.isHuman)
+                bitmap = new Bitmap("OFFICER2.png");
             Location.X = X;
             Location.Y = Y;
             player = pl;
@@ -88,6 +99,8 @@ namespace Chess
     {
         public Castle(int X, int Y, Player pl)
         {
+            if (!pl.isHuman)
+                bitmap = new Bitmap("CASTLE2.png");
             Location.X = X;
             Location.Y = Y;
             player = pl;

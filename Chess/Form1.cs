@@ -23,8 +23,10 @@ namespace Chess
         {
             g = this.CreateGraphics();
             Painter p = new Painter();
+            GameField gameFild = new GameField();
+            gameFild.NewGame();
             //Rectangle re = new Rectangle(0, 0, 256, 256);
-            p.Drow(g);
+            p.Drow(g, GameField.figures);
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
