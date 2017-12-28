@@ -25,6 +25,7 @@ namespace Chess
         //public bool isFirstPlayer { get; private set; }
         ///void Step(int X, int Y);
     }
+
     public class Pawn : Figure
     {
         public Pawn(int X, int Y, Player pl)
@@ -42,13 +43,10 @@ namespace Chess
                 if(stepCount == 0)
                 {
                     if (Location.X + X <= 4 && Location.Y == Y)
-                        Location.X = X;
-                    
+                        Location.X = X;                    
                 }
-            }
-            
+            }            
         }
-
     }
 
     class King : Figure
@@ -62,6 +60,7 @@ namespace Chess
             player = pl;
         }
     }
+
     class Queen : Figure
     {
         public Queen(int X, int Y, Player pl)
@@ -73,6 +72,7 @@ namespace Chess
             player = pl;
         }
     }
+
     class Horse : Figure
     {
         public Horse(int X, int Y, Player pl)
@@ -95,6 +95,7 @@ namespace Chess
             player = pl;
         }
     }
+
     class Castle : Figure
     {
         public Castle(int X, int Y, Player pl)

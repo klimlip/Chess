@@ -25,6 +25,5 @@ namespace Chess
             else
                 color = Color.Black;
         }
-
     }
 }
