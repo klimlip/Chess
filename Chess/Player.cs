@@ -15,12 +15,12 @@ namespace Chess
         }
 
         public Color color;
-        public bool isHuman { get; private set; }  // true - first
+        public bool isHuman { get; private set; }  // true - first 
+        //какая-то хрень с человеком, он должен знать, человек он или нет и знать, белый он или черный
 
         public Player(bool isFirst)
         {
-            this.isHuman = isFirst;
-            if (isHuman)
+            if (isFirst)
                 color = Color.White;
             else
                 color = Color.Black;

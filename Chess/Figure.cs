@@ -28,13 +28,13 @@ namespace Chess
 
     public class Pawn : Figure
     {
-        public Pawn(int X, int Y, Player pl)
+        public Pawn(int X, int Y, Player player)
         {
-            if(!pl.isHuman)
+            if(!player.isHuman)
                 bitmap = new Bitmap("PAWN2.png");
             Location.X = X;
             Location.Y = Y;
-            player = pl;
+            base.player = player;
         }
         public void Step(int X, int Y)
         {
