@@ -164,7 +164,7 @@
             this.Controls.Add(this.gbColor);
             this.Name = "GameForm";
             this.Text = "Сыграем?";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameForm_Paint);
             this.gbColor.ResumeLayout(false);
             this.gbColor.PerformLayout();
             this.gbPlayer1.ResumeLayout(false);

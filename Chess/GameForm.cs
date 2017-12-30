@@ -28,20 +28,29 @@ namespace Chess
             bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
             gameField.NewGame(firstIsHuman, secondIsHuman, WhiteOnTop);
             //Rectangle re = new Rectangle(0, 0, 256, 256);
-            p.Draw(g, GameField.field);// figures);
-        }
-
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-            Draw(true);
+            p.Draw(g, GameField.field);
         }
 
         private void rbBlackOnTop_CheckedChanged(object sender, EventArgs e)
         {
             bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
             gameField.NewGame(firstIsHuman, secondIsHuman, WhiteOnTop);
-            //Rectangle re = new Rectangle(0, 0, 256, 256);
-            p.Draw(g, GameField.field);// figures);
+            p.Draw(g, GameField.field);
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }
+
+        private void GameForm_Paint(object sender, PaintEventArgs e)
+        {
+            Draw(true);
         }
     }
 }

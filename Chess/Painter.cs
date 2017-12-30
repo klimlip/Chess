@@ -42,32 +42,23 @@ namespace Chess
             //officer2 = new Bitmap("OFFICER2.png");
         }
 
-        public void Draw(Graphics g, IFigure[,] field)//List<IFigure> figure)
+        public void Draw(Graphics g, IFigure[,] field)
         {
             g.DrawImage(background, 0, 0, 500, 500);
 
             foreach (var f in field)
             {
-                //if(!f.player.isHuman)
-                //{
                 if (f != null)
                 {
                     var p = LocationInForm(f);
                     g.DrawImage(f.bitmap, p.X, p.Y, 51, 51);
                 }
-                //}
             }
-            //g.DrawImage(pawn2, 0, 0);
-            //g.DrawImage(king2, 198,22, 35,35);
         }
 
         private static Point LocationInForm(IFigure f)
         {
             Point ret = new Point(32 + f.Location.X * 55, 32 + f.Location.Y * 55);
-            //if(f.Location.Y == 7)
-            //    return ret = new Point(35 + f.Location.X * 55, 20);
-            //if (f.Location.Y == 6)
-            //    return ret = new Point(35 + f.Location.X * 55, 65);
 
             return ret;
         }
