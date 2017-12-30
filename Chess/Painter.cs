@@ -42,16 +42,19 @@ namespace Chess
             //officer2 = new Bitmap("OFFICER2.png");
         }
 
-        public void Draw(Graphics g, List<IFigure> figure)
+        public void Draw(Graphics g, IFigure[,] field)//List<IFigure> figure)
         {
             g.DrawImage(background, 0, 0, 500, 500);
 
-            foreach (var f in figure)
+            foreach (var f in field)
             {
                 //if(!f.player.isHuman)
                 //{
+                if (f != null)
+                {
                     var p = LocationInForm(f);
                     g.DrawImage(f.bitmap, p.X, p.Y, 51, 51);
+                }
                 //}
             }
             //g.DrawImage(pawn2, 0, 0);

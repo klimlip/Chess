@@ -17,95 +17,120 @@ namespace Chess
             if (!WhiteOnTop)
                 for (int i = 0; i <= 7; i++)
                 {
-                    Pawn pawn1 = new Pawn(i, 1, player1);
-                    Pawn pawn2 = new Pawn(i, 6, player2);
-                    figures.Add(pawn1);
-                    figures.Add(pawn2);
+                    //Pawn pawn1 = new Pawn(i, 1, player1);
+                    //Pawn pawn2 = new Pawn(i, 6, player2);
+                    //figures.Add(pawn1);
+                    //figures.Add(pawn2);
+                    field[i, 1] = new Pawn(i, 1, player1);
+                    field[i, 6] = new Pawn(i, 6, player2);
                 }
             else
                 for (int i = 0; i <= 7; i++)
                 {
-                    Pawn pawn1 = new Pawn(i, 6, player1);
-                    Pawn pawn2 = new Pawn(i, 1, player2);
-                    figures.Add(pawn1);
-                    figures.Add(pawn2);
+                    //Pawn pawn1 = new Pawn(i, 6, player1);
+                    //Pawn pawn2 = new Pawn(i, 1, player2);
+                    //figures.Add(pawn1);
+                    //figures.Add(pawn2);
+                    field[i, 1] = new Pawn(i, 6, player1);
+                    field[i, 6] = new Pawn(i, 1, player2);
                 } // создаем пешки
             if (!WhiteOnTop)
                 for (int i = 0; i <= 7; i += 7)
                 {
-                    Rook ca1 = new Rook(i, 0, player1);
-                    Rook ca2 = new Rook(i, 7, player2);
-                    figures.Add(ca1);
-                    figures.Add(ca2);
+                    //Rook ca1 = new Rook(i, 0, player1);
+                    //Rook ca2 = new Rook(i, 7, player2);
+                    //figures.Add(ca1);
+                    //figures.Add(ca2);
+                    field[i, 0] = new Rook(i, 0, player1);
+                    field[i, 7] = new Rook(i, 7, player2);
                 }               
             else
                 for (int i = 0; i <= 7; i += 7)
                 {
-                    Rook ca1 = new Rook(i, 7, player1);
-                    Rook ca2 = new Rook(i, 0, player2);
-                    figures.Add(ca1);
-                    figures.Add(ca2);
+                    //Rook ca1 = new Rook(i, 7, player1);
+                    //Rook ca2 = new Rook(i, 0, player2);
+                    //figures.Add(ca1);
+                    //figures.Add(ca2);
+                    field[i, 7] = new Rook(i, 7, player1);
+                    field[i, 0] = new Rook(i, 0, player2);
                 }                 // создаем ладьи
             if (!WhiteOnTop)
                 for (int i = 1; i <= 7; i += 5)
                 {
-                    Knight ho1 = new Knight(i, 0, player1);
-                    Knight ho2 = new Knight(i, 7, player2);
-                    figures.Add(ho1);
-                    figures.Add(ho2);
+                    //Knight ho1 = new Knight(i, 0, player1);
+                    //Knight ho2 = new Knight(i, 7, player2);
+                    //figures.Add(ho1);  
+                    //figures.Add(ho2);
+                    field[i, 0] = new Knight(i, 0, player1);
+                    field[i, 7] = new Knight(i, 7, player2);
                 }           
             else
                 for (int i = 1; i <= 7; i += 5)
                 {
-                    Knight ho1 = new Knight(i, 7, player1);
-                    Knight ho2 = new Knight(i, 0, player2);
-                    figures.Add(ho1);
-                    figures.Add(ho2);
+                    //Knight ho1 = new Knight(i, 7, player1);
+                    //Knight ho2 = new Knight(i, 0, player2);
+                    //figures.Add(ho1);
+                    //figures.Add(ho2);
+                    field[i, 7] = new Knight(i, 7, player1);
+                    field[i, 0] = new Knight(i, 0, player2);
                 }        // создаем коней
             if (!WhiteOnTop)
                 for (int i = 2; i <= 6; i += 3)
                 {
-                    Bishop of1 = new Bishop(i, 0, player1);
-                    Bishop of2 = new Bishop(i, 7, player2);
-                    figures.Add(of1);
-                    figures.Add(of2);
+                    //Bishop of1 = new Bishop(i, 0, player1);
+                    //Bishop of2 = new Bishop(i, 7, player2);
+                    //figures.Add(of1);
+                    //figures.Add(of2);
+                    field[i, 0] = new Bishop(i, 0, player1);
+                    field[i, 7] = new Bishop(i, 7, player2);
                 }                               
             else
                 for (int i = 2; i <= 6; i += 3)
                 {
-                    Bishop of1 = new Bishop(i, 7, player1);
-                    Bishop of2 = new Bishop(i, 0, player2);
-                    figures.Add(of1);
-                    figures.Add(of2);
+                    //Bishop of1 = new Bishop(i, 7, player1);
+                    //Bishop of2 = new Bishop(i, 0, player2);
+                    //figures.Add(of1);
+                    //figures.Add(of2);
+                    field[i, 7] = new Bishop(i, 7, player1);
+                    field[i, 0] = new Bishop(i, 0, player2);
                 }    // создаем слоников
             if (!WhiteOnTop)
             {
-                Queen q1 = new Queen(3, 0, player1);
-                Queen q2 = new Queen(3, 7, player2);
-                King k1 = new King(4, 0, player1);
-                King k2 = new King(4, 7, player2);
-                figures.Add(q1);
-                figures.Add(q2);
-                figures.Add(k1);
-                figures.Add(k2);
+                //Queen q1 = new Queen(3, 0, player1);
+                //Queen q2 = new Queen(3, 7, player2);
+                //King k1 = new King(4, 0, player1);
+                //King k2 = new King(4, 7, player2);
+                //figures.Add(q1);
+                //figures.Add(q2);
+                //figures.Add(k1);
+                //figures.Add(k2);
+                field[3, 0] = new Queen(3, 0, player1);
+                field[3, 7] = new Queen(3, 7, player2);
+                field[4, 0] = new King(4, 0, player1);
+                field[4, 7] = new King(4, 7, player2);
             }
             else
             {
-                Queen q1 = new Queen(3, 7, player1);
-                Queen q2 = new Queen(3, 0, player2);
-                King k1 = new King(4, 7, player1);
-                King k2 = new King(4, 0, player2);
-                figures.Add(q1);
-                figures.Add(q2);
-                figures.Add(k1);
-                figures.Add(k2);
+                //Queen q1 = new Queen(3, 7, player1);
+                //Queen q2 = new Queen(3, 0, player2);
+                //King k1 = new King(4, 7, player1);
+                //King k2 = new King(4, 0, player2);
+                //figures.Add(q1);
+                //figures.Add(q2);
+                //figures.Add(k1);
+                //figures.Add(k2);
+                field[3, 0] = new Queen(3, 7, player1);
+                field[3, 7] = new Queen(3, 0, player2);
+                field[4, 0] = new King(4, 7, player1);
+                field[4, 7] = new King(4, 0, player2);
+
             }
             //создаем королей и ферзей
 
-            foreach (var f in figures)
-            {
-                field[f.Location.X, f.Location.Y] = f;
-            }                                     // заполнили массив поля(я про него забыл, поэтому заполняем так)
+            //foreach (var f in figures)
+            //{
+            //    field[f.Location.X, f.Location.Y] = f;
+            //}                                     // заполнили массив поля(я про него забыл, поэтому заполняем так)
         }
 
     }
