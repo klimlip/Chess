@@ -8,8 +8,8 @@ namespace Chess
 {
     class GameField
     {
-        public static List<Figure> figures = new List<Figure>();
-        public static Figure[,] field = new Figure[8, 8];
+        public static List<IFigure> figures = new List<IFigure>();
+        public static IFigure[,] field = new IFigure[8, 8];
         public void NewGame()
         {
             Player player1 = new Player(true);
