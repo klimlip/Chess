@@ -20,28 +20,28 @@ namespace Chess
                 Pawn pawn2 = new Pawn(i, 6, player2);
                 figures.Add(pawn1);
                 figures.Add(pawn2);
-            }                               // placement of pawns
+            }                               // создаем пешки
             for(int i = 0; i <= 7; i += 7)
             { 
-                Castle ca1 = new Castle(i, 0, player1);
-                Castle ca2 = new Castle(i, 7, player2);
+                Rook ca1 = new Rook(i, 0, player1);
+                Rook ca2 = new Rook(i, 7, player2);
                 figures.Add(ca1);
                 figures.Add(ca2);
-            }                           // placement of castles
+            }                           // создаем ладьи
             for(int i = 1; i <= 7; i+= 5)
             {
-                Horse ho1 = new Horse(i, 0, player1);
-                Horse ho2 = new Horse(i, 7, player2);
+                Knight ho1 = new Knight(i, 0, player1);
+                Knight ho2 = new Knight(i, 7, player2);
                 figures.Add(ho1);
                 figures.Add(ho2);
-            }                            // placement of horses
+            }                            // создаем коней
             for(int i = 2; i<=6; i+=3)
             {
-                Officer of1 = new Officer(i, 0, player1);
-                Officer of2 = new Officer(i, 7, player2);
+                Bishop of1 = new Bishop(i, 0, player1);
+                Bishop of2 = new Bishop(i, 7, player2);
                 figures.Add(of1);
                 figures.Add(of2);
-            }                               // placement of officers
+            }                               // создаем слоников
             Queen q1 = new Queen(3, 0, player1);
             Queen q2 = new Queen(3, 7, player2);
             King k1 = new King(4, 0, player1);
@@ -50,7 +50,7 @@ namespace Chess
             figures.Add(q2);
             figures.Add(k1);
             figures.Add(k2);
-
+            //создаем королей и ферзей
 
             foreach (var f in figures)
             {
