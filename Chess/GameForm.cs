@@ -18,13 +18,15 @@ namespace Chess
         }
 
         Graphics g;
-
+        GameField gameField = new GameField();
+        Painter p = new Painter();
         public void Draw(bool IDontKnowWhyThisIsNecessary)
         {
-            g = this.CreateGraphics();
-            Painter p = new Painter();
-            GameField gameFild = new GameField();
-            gameFild.NewGame();
+            g = CreateGraphics();
+            //Painter p = new Painter();
+            //GameField gameField = new GameField();
+            bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
+            gameField.NewGame(firstIsHuman, secondIsHuman, WhiteOnTop);
             //Rectangle re = new Rectangle(0, 0, 256, 256);
             p.Draw(g, GameField.figures);
         }
@@ -32,6 +34,14 @@ namespace Chess
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Draw(true);
+        }
+
+        private void rbBlackOnTop_CheckedChanged(object sender, EventArgs e)
+        {
+            bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
+            gameField.NewGame(firstIsHuman, secondIsHuman, WhiteOnTop);
+            //Rectangle re = new Rectangle(0, 0, 256, 256);
+            p.Draw(g, GameField.figures);
         }
     }
 }

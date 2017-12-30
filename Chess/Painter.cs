@@ -48,11 +48,11 @@ namespace Chess
 
             foreach (var f in figure)
             {
-                if(!f.player.isHuman)
-                {
+                //if(!f.player.isHuman)
+                //{
                     var p = LocationInForm(f);
-                    //g.DrawImage(f.bitmap, p.X, p.Y, 35, 35);
-                }
+                    g.DrawImage(f.bitmap, p.X, p.Y, 51, 51);
+                //}
             }
             //g.DrawImage(pawn2, 0, 0);
             //g.DrawImage(king2, 198,22, 35,35);
@@ -60,11 +60,11 @@ namespace Chess
 
         private static Point LocationInForm(IFigure f)
         {
-            Point ret = new Point();
-            if(f.Location.Y == 7)
-                return ret = new Point(20 + f.Location.X * 44, 20);
-            if (f.Location.Y == 6)
-                return ret = new Point(20 + f.Location.X * 44, 65);
+            Point ret = new Point(32 + f.Location.X * 55, 32 + f.Location.Y * 55);
+            //if(f.Location.Y == 7)
+            //    return ret = new Point(35 + f.Location.X * 55, 20);
+            //if (f.Location.Y == 6)
+            //    return ret = new Point(35 + f.Location.X * 55, 65);
 
             return ret;
         }

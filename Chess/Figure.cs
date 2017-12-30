@@ -26,10 +26,10 @@ namespace Chess
             Location = new Point(X, Y);
             firstStep = true;
             this.player = player;
-            if (player.color == Player.Color.White)
-                bitmap = new Bitmap("PAWN1.png");
+            if (this.player.color == Player.Color.White)
+                bitmap = new Bitmap("pawn11.png");
             else
-                bitmap = new Bitmap("PAWN2.png");
+                bitmap = new Bitmap("pawn22.png");
         }
         public void Step(int X, int Y)
         {
@@ -50,15 +50,15 @@ namespace Chess
         public bool firstStep { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
-        public King(int X, int Y, Player pl)
+        public King(int X, int Y, Player player)
         {
             Location = new Point(X, Y);
             firstStep = true;
-            player = pl;
-            if (player.color == Player.Color.White)
-                bitmap = new Bitmap("KING1.png");
+            this.player = player;
+            if (this.player.color == Player.Color.White)
+                bitmap = new Bitmap("king11.png");
             else
-                bitmap = new Bitmap("KING2.png");
+                bitmap = new Bitmap("king22.png");
         }
     }
 
@@ -68,14 +68,14 @@ namespace Chess
         public bool firstStep { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
-        public Queen(int X, int Y, Player pl)
+        public Queen(int X, int Y, Player player)
         {
             Location = new Point(X, Y);
-            player = pl;
-            if (player.color == Player.Color.White)
-                bitmap = new Bitmap("QUEEN1.png");
+            this.player = player;
+            if (this.player.color == Player.Color.White)
+                bitmap = new Bitmap("queen11.png");
             else
-                bitmap = new Bitmap("QUEEN2.png");
+                bitmap = new Bitmap("queen22.png");
         }
     }
 
@@ -85,14 +85,14 @@ namespace Chess
         public bool firstStep { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
-        public Knight(int X, int Y, Player pl)
+        public Knight(int X, int Y, Player player)
         {
             Location = new Point(X, Y);
-            player = pl;
-            if (player.color == Player.Color.White)
-                bitmap = new Bitmap("HORSE1.png");
+            this.player = player;
+            if (this.player.color == Player.Color.White)
+                bitmap = new Bitmap("knight11.png");
             else
-                bitmap = new Bitmap("HORSE2.png");
+                bitmap = new Bitmap("knight22.png");
         }
     }
     class Bishop : IFigure //слоник
@@ -101,14 +101,14 @@ namespace Chess
         public bool firstStep { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
-        public Bishop(int X, int Y, Player pl)
+        public Bishop(int X, int Y, Player player)
         {
             Location = new Point(X, Y);
-            player = pl;
-            if (player.color == Player.Color.White)
-                bitmap = new Bitmap("OFFICER1.png");
+            this.player = player;
+            if (this.player.color == Player.Color.White)
+                bitmap = new Bitmap("bishop11.png");
             else
-                bitmap = new Bitmap("OFFICER2.png");
+                bitmap = new Bitmap("bishop22.png");
         }
     }
 
@@ -118,14 +118,14 @@ namespace Chess
         public bool firstStep { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
-        public Rook(int X, int Y, Player pl)
+        public Rook(int X, int Y, Player player)
         {
             Location = new Point(X, Y);
-            player = pl;
-            if (player.color == Player.Color.White)
-                bitmap = new Bitmap("CASTLE1.png");
+            this.player = player;
+            if (this.player.color == Player.Color.White)
+                bitmap = new Bitmap("rook11.png");
             else
-                bitmap = new Bitmap("CASTLE2.png");
+                bitmap = new Bitmap("rook22.png");
         }
     }
 
