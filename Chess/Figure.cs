@@ -63,7 +63,7 @@ namespace Chess
 
             var a = WhereCanIGo();
             if (a[X, Y] == true)
-                ToDoStep(X, Y);
+                DoStep(X, Y);
         }
 
         public bool[,] WhereCanIGo()
