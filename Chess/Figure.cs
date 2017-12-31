@@ -106,13 +106,13 @@ namespace Chess
     class King : IFigure
     {
         public Point Location { get; set; }
-        public bool firstStep { get; set; }
+        public bool castlingPossible { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
         public King(int X, int Y, Player player)
         {
             Location = new Point(X, Y);
-            firstStep = true;
+            castlingPossible = true;
             this.player = player;
             if (this.player.color == Player.Color.White)
                 bitmap = new Bitmap("king11.png");
