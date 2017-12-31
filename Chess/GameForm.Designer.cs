@@ -57,10 +57,12 @@
             // rbBlackOnTop
             // 
             this.rbBlackOnTop.AutoSize = true;
+            this.rbBlackOnTop.Checked = true;
             this.rbBlackOnTop.Location = new System.Drawing.Point(7, 43);
             this.rbBlackOnTop.Name = "rbBlackOnTop";
             this.rbBlackOnTop.Size = new System.Drawing.Size(90, 17);
             this.rbBlackOnTop.TabIndex = 1;
+            this.rbBlackOnTop.TabStop = true;
             this.rbBlackOnTop.Text = "Белые внизу";
             this.rbBlackOnTop.UseVisualStyleBackColor = true;
             this.rbBlackOnTop.CheckedChanged += new System.EventHandler(this.rbBlackOnTop_CheckedChanged);
@@ -68,12 +70,10 @@
             // rbWhiteOnTop
             // 
             this.rbWhiteOnTop.AutoSize = true;
-            this.rbWhiteOnTop.Checked = true;
             this.rbWhiteOnTop.Location = new System.Drawing.Point(7, 20);
             this.rbWhiteOnTop.Name = "rbWhiteOnTop";
             this.rbWhiteOnTop.Size = new System.Drawing.Size(95, 17);
             this.rbWhiteOnTop.TabIndex = 0;
-            this.rbWhiteOnTop.TabStop = true;
             this.rbWhiteOnTop.Text = "Белые вверху";
             this.rbWhiteOnTop.UseVisualStyleBackColor = true;
             this.rbWhiteOnTop.CheckedChanged += new System.EventHandler(this.rbWhiteOnTop_CheckedChanged);

@@ -55,6 +55,8 @@ namespace Chess
 
         private void btPlay_Click(object sender, EventArgs e)
         {
+            //GameField.field[1, 1].Step(1, 2);
+            //p.Draw(g, GameField.field);
 
         }
 

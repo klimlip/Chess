@@ -13,6 +13,7 @@ namespace Chess
         Player player { get; set; }
         Bitmap bitmap { get; set; }
         bool[,] WhereCanIGo();
+        void Step(int X, int Y);
     }
     public class Pawn : IFigure
     {
@@ -74,9 +75,9 @@ namespace Chess
                     ret[Location.X, Location.Y + 2] = true;
                 if (GameField.field[Location.X, Location.Y + 1] == null)
                     ret[Location.X, Location.Y + 1] = true;
-                if (GameField.field[Location.X + 1, Location.Y + 1].player.color != player.color)
+                if (GameField.field[Location.X + 1, Location.Y + 1] != null && GameField.field[Location.X + 1, Location.Y + 1].player.color != player.color)
                     ret[Location.X + 1, Location.Y + 1] = true;
-                if (GameField.field[Location.X - 1, Location.Y + 1].player.color != player.color)
+                if (GameField.field[Location.X - 1, Location.Y + 1] != null && GameField.field[Location.X - 1, Location.Y + 1].player.color != player.color)
                     ret[Location.X - 1, Location.Y + 1] = true;
             }
             else
@@ -85,9 +86,9 @@ namespace Chess
                     ret[Location.X, Location.Y - 2] = true;
                 if (GameField.field[Location.X, Location.Y - 1] == null)
                     ret[Location.X, Location.Y + 1] = true;
-                if (GameField.field[Location.X + 1, Location.Y - 1].player.color != player.color)
+                if (GameField.field[Location.X + 1, Location.Y - 1] != null && GameField.field[Location.X + 1, Location.Y - 1].player.color != player.color)
                     ret[Location.X + 1, Location.Y - 1] = true;
-                if (GameField.field[Location.X - 1, Location.Y - 1].player.color != player.color)
+                if (GameField.field[Location.X - 1, Location.Y - 1] != null && GameField.field[Location.X - 1, Location.Y - 1].player.color != player.color)
                     ret[Location.X - 1, Location.Y - 1] = true;
             }
             return ret;
@@ -140,6 +141,10 @@ namespace Chess
                 ret[Location.X, Location.Y - 1] = true;
             return ret;
         }
+        public void Step(int X, int Y)
+        {
+
+        }
     }
 
     class Queen : IFigure
@@ -160,7 +165,129 @@ namespace Chess
         public bool[,] WhereCanIGo()
         {
             bool[,] ret = new bool[8, 8];
+            var x = Location.X;
+            var y = Location.Y;
+            while (x >= 0)
+            {
+                if (GameField.field[x, y] == null)
+                    ret[x, y] = true;
+                else if (GameField.field[x, y].player.color != player.color)
+                {
+                    ret[x, y] = true;
+                    break;
+                }
+                else break;
+                x--;
+            }
+            x = Location.X;
+            y = Location.Y;
+            while (x < 8)
+            {
+                if (GameField.field[x, y] == null)
+                    ret[x, y] = true;
+                else if (GameField.field[x, y].player.color != player.color)
+                {
+                    ret[x, y] = true;
+                    break;
+                }
+                else break;
+                x++;
+            }
+            x = Location.X;
+            y = Location.Y;
+            while (y < 8)
+            {
+                if (GameField.field[x, y] == null)
+                    ret[x, y] = true;
+                else if (GameField.field[x, y].player.color != player.color)
+                {
+                    ret[x, y] = true;
+                    break;
+                }
+                else break;
+                y++;
+            }
+            x = Location.X;
+            y = Location.Y;
+            while (y >= 0)
+            {
+                if (GameField.field[x, y] == null)
+                    ret[x, y] = true;
+                else if (GameField.field[x, y].player.color != player.color)
+                {
+                    ret[x, y] = true;
+                    break;
+                }
+                else break;
+                y--;
+            }
+            x = Location.X;
+            y = Location.Y;
+            while (x < 8 && y < 8)
+            {
+                if (GameField.field[x, y] == null)
+                    ret[x, y] = true;
+                else if (GameField.field[x, y].player.color != player.color)
+                {
+                    ret[x, y] = true;
+                    break;
+                }
+                else break;
+                x++;
+                y++;
+            }
+            x = Location.X;
+            y = Location.Y;
+            while (x < 8 && y >= 0)
+            {
+                if (GameField.field[x, y] == null)
+                    ret[x, y] = true;
+                else if (GameField.field[x, y].player.color != player.color)
+                {
+                    ret[x, y] = true;
+                    break;
+                }
+                else break;
+                x++;
+                y--;
+            }
+            x = Location.X;
+            y = Location.Y;
+            while (x >= 0 && y >= 0)
+            {
+                if (GameField.field[x, y] == null)
+                    ret[x, y] = true;
+                else if (GameField.field[x, y].player.color != player.color)
+                {
+                    ret[x, y] = true;
+                    break;
+                }
+                else break;
+                x--;
+                y--;
+            }
+            x = Location.X;
+            y = Location.Y;
+            while (x < 8 && y < 8)
+            {
+                if (GameField.field[x, y] == null)
+                    ret[x, y] = true;
+                else if (GameField.field[x, y].player.color != player.color)
+                {
+                    ret[x, y] = true;
+                    break;
+                }
+                else break;
+                x--;
+                y++;
+            }
+
             return ret;
+        }
+
+        public void Step(int X, int Y)
+        {
+
         }
     }
 
@@ -186,19 +313,34 @@ namespace Chess
                 ret[Location.X -2, Location.Y - 1] = true;
             if (Location.X - 2 >= 0 && Location.Y + 1 < 8 && GameField.field[Location.X - 2, Location.Y + 1].player.color != player.color)
                 ret[Location.X - 2, Location.Y + 1] = true;
-            if (Location.X + 2 < 8 && Location.Y - 1 >= 0 && GameField.field[Location.X + 2, Location.Y - 1].player.color != player.color)
+            if (Location.X + 2 < 8 && Location.Y - 1 >= 0 && (GameField.field[Location.X + 2, Location.Y - 1] == null || GameField.field[Location.X + 2, Location.Y - 1].player.color != player.color))
                 ret[Location.X + 2, Location.Y - 1] = true;
             if (Location.X + 2 < 8 && Location.Y + 1 < 8 && GameField.field[Location.X + 2, Location.Y + 1].player.color != player.color)
                 ret[Location.X + 2, Location.Y + 1] = true;
-            if (Location.X + 1 < 8 && Location.Y + 2 < 8 && GameField.field[Location.X + 1, Location.Y + 2].player.color != player.color)
+            if (Location.X + 1 < 8 && Location.Y + 2 < 8 && (GameField.field[Location.X + 1, Location.Y + 2] == null || GameField.field[Location.X + 1, Location.Y + 2].player.color != player.color))
                 ret[Location.X + 1, Location.Y + 2] = true;
-            if (Location.X + 1 < 8 && Location.Y - 2 >= 0 && GameField.field[Location.X + 1, Location.Y - 2].player.color != player.color)
+            if (Location.X + 1 < 8 && Location.Y - 2 >= 0 && (GameField.field[Location.X + 1, Location.Y - 2] == null || GameField.field[Location.X + 1, Location.Y - 2].player.color != player.color))
                 ret[Location.X + 1, Location.Y - 2] = true;
-            if (Location.X - 1 >= 0 && Location.Y + 2 < 8 && GameField.field[Location.X - 1, Location.Y + 2].player.color != player.color)
+            if (Location.X - 1 >= 0 && Location.Y + 2 < 8 && (GameField.field[Location.X - 1, Location.Y + 2] == null || GameField.field[Location.X - 1, Location.Y + 2].player.color != player.color))
                 ret[Location.X - 1, Location.Y + 2] = true;
-            if (Location.X - 1 >= 0 && Location.Y - 2 >= 0 && GameField.field[Location.X - 1, Location.Y - 2].player.color != player.color)
+            if (Location.X - 1 >= 0 && Location.Y - 2 >= 0 && (GameField.field[Location.X - 1, Location.Y - 2] == null || GameField.field[Location.X - 1, Location.Y - 2].player.color != player.color))
                 ret[Location.X - 1, Location.Y - 2] = true;
             return ret;
+        }
+
+        public void Step(int X, int Y)
+        {
+            var a = WhereCanIGo();
+            if (a[X, Y] == true)
+                ToDoStep(X, Y);
+        }
+
+        private void ToDoStep(int X, int Y)
+        {
+            var oldPoint = Location;
+            Location = new Point(X, Y);
+            GameField.field[Location.X, Location.Y] = GameField.field[oldPoint.X, oldPoint.Y];
+            GameField.field[oldPoint.X, oldPoint.Y] = null;
         }
     }
     class Bishop : IFigure //слоник
@@ -280,6 +422,11 @@ namespace Chess
             }
             return ret;
         }
+
+        public void Step(int X, int Y)
+        {
+
+        }
     }
 
     class Rook : IFigure //ладья
@@ -357,6 +504,11 @@ namespace Chess
                 y--;
             }
             return ret;
+        }
+
+        public void Step(int X, int Y)
+        {
+
         }
     }
 
