@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.gbColor = new System.Windows.Forms.GroupBox();
-            this.rbWhiteOnTop = new System.Windows.Forms.RadioButton();
             this.rbBlackOnTop = new System.Windows.Forms.RadioButton();
+            this.rbWhiteOnTop = new System.Windows.Forms.RadioButton();
             this.gbPlayer1 = new System.Windows.Forms.GroupBox();
             this.rbPlayer1IsComputer = new System.Windows.Forms.RadioButton();
             this.rbPlayer1IsHuman = new System.Windows.Forms.RadioButton();
@@ -54,6 +54,17 @@
             this.gbColor.TabStop = false;
             this.gbColor.Text = "Кто вверху?";
             // 
+            // rbBlackOnTop
+            // 
+            this.rbBlackOnTop.AutoSize = true;
+            this.rbBlackOnTop.Location = new System.Drawing.Point(7, 43);
+            this.rbBlackOnTop.Name = "rbBlackOnTop";
+            this.rbBlackOnTop.Size = new System.Drawing.Size(90, 17);
+            this.rbBlackOnTop.TabIndex = 1;
+            this.rbBlackOnTop.Text = "Белые внизу";
+            this.rbBlackOnTop.UseVisualStyleBackColor = true;
+            this.rbBlackOnTop.CheckedChanged += new System.EventHandler(this.rbBlackOnTop_CheckedChanged);
+            // 
             // rbWhiteOnTop
             // 
             this.rbWhiteOnTop.AutoSize = true;
@@ -65,17 +76,7 @@
             this.rbWhiteOnTop.TabStop = true;
             this.rbWhiteOnTop.Text = "Белые вверху";
             this.rbWhiteOnTop.UseVisualStyleBackColor = true;
-            // 
-            // rbBlackOnTop
-            // 
-            this.rbBlackOnTop.AutoSize = true;
-            this.rbBlackOnTop.Location = new System.Drawing.Point(7, 43);
-            this.rbBlackOnTop.Name = "rbBlackOnTop";
-            this.rbBlackOnTop.Size = new System.Drawing.Size(90, 17);
-            this.rbBlackOnTop.TabIndex = 1;
-            this.rbBlackOnTop.Text = "Белые внизу";
-            this.rbBlackOnTop.UseVisualStyleBackColor = true;
-            this.rbBlackOnTop.CheckedChanged += new System.EventHandler(this.rbBlackOnTop_CheckedChanged);
+            this.rbWhiteOnTop.CheckedChanged += new System.EventHandler(this.rbWhiteOnTop_CheckedChanged);
             // 
             // gbPlayer1
             // 
@@ -152,6 +153,7 @@
             this.btPlay.TabIndex = 4;
             this.btPlay.Text = "Играть!";
             this.btPlay.UseVisualStyleBackColor = true;
+            this.btPlay.Click += new System.EventHandler(this.btPlay_Click);
             // 
             // GameForm
             // 

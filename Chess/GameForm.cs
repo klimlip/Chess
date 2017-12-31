@@ -52,5 +52,15 @@ namespace Chess
         {
             Draw(true);
         }
+
+        private void btPlay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbWhiteOnTop_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

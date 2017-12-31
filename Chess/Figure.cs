@@ -10,7 +10,6 @@ namespace Chess
     public interface IFigure
     {
         Point Location { get; set; }
-        bool firstStep { get; set; } //true - еще не было шагов, false - уже были
         Player player { get; set; }
         Bitmap bitmap { get; set; }
     }
@@ -19,12 +18,14 @@ namespace Chess
     {
         public Point Location { get; set; }
         public bool firstStep { get; set; }
+        private bool isOnTop;
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
-        public Pawn(int X, int Y, Player player)
+        public Pawn(int X, int Y, bool isOnTop, Player player)
         {
             Location = new Point(X, Y);
             firstStep = true;
+            this.isOnTop = isOnTop;
             this.player = player;
             if (this.player.color == Player.Color.White)
                 bitmap = new Bitmap("pawn11.png");
@@ -33,14 +34,30 @@ namespace Chess
         }
         public void Step(int X, int Y)
         {
-            if(player.isHuman)
+            if (!isOnTop)
             {
-                if(firstStep)
+                if (firstStep)
                 {
-                    if (Location.X + X <= 4 && Location.Y == Y)
-                        Location = new Point(X, Y);                    
+                    if (Y > 2 && Y <= 4 && Location.X == X && GameField.field[X, Y] == null)
+                    {
+                        ToDoStep(X, Y);
+                        firstStep = false;
+                    }
                 }
-            }            
+                else if (Y - Location.Y == 1 && Location.X == X && GameField.field[X, Y] == null)
+                    ToDoStep(X, Y);
+                else if (Y - Location.Y == 1 && Math.Abs(X - Location.X) == 1 && GameField.field[X, Y].player.color != player.color)
+                    ToDoStep(X, Y);
+                else throw new Exception("Пешка Не может Сюда пойти :(");
+            }
+        }
+
+        private void ToDoStep(int X, int Y)
+        {
+            var oldPoint = Location;
+            Location = new Point(X, Y);
+            GameField.field[Location.X, Location.Y] = GameField.field[oldPoint.X, oldPoint.Y];
+            GameField.field[oldPoint.X, oldPoint.Y] = null;
         }
     }
 
@@ -65,7 +82,6 @@ namespace Chess
     class Queen : IFigure
     {
         public Point Location { get; set; }
-        public bool firstStep { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
         public Queen(int X, int Y, Player player)
@@ -82,7 +98,6 @@ namespace Chess
     class Knight : IFigure //рыцарь на коняшке
     {
         public Point Location { get; set; }
-        public bool firstStep { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
         public Knight(int X, int Y, Player player)
@@ -98,7 +113,6 @@ namespace Chess
     class Bishop : IFigure //слоник
     {
         public Point Location { get; set; }
-        public bool firstStep { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
         public Bishop(int X, int Y, Player player)
@@ -115,7 +129,6 @@ namespace Chess
     class Rook : IFigure //ладья
     {
         public Point Location { get; set; }
-        public bool firstStep { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
         public Rook(int X, int Y, Player player)

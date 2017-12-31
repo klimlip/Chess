@@ -17,14 +17,14 @@ namespace Chess
             if (!WhiteOnTop)
                 for (int i = 0; i <= 7; i++)
                 {
-                    field[i, 1] = new Pawn(i, 1, player1);
-                    field[i, 6] = new Pawn(i, 6, player2);
+                    field[i, 1] = new Pawn(i, 1, false, player1);
+                    field[i, 6] = new Pawn(i, 6, true,  player2);
                 }
             else
                 for (int i = 0; i <= 7; i++)
                 {
-                    field[i, 1] = new Pawn(i, 6, player1);
-                    field[i, 6] = new Pawn(i, 1, player2);
+                    field[i, 1] = new Pawn(i, 6, true, player1);
+                    field[i, 6] = new Pawn(i, 1, false, player2);
                 } // создаем пешки
             if (!WhiteOnTop)
                 for (int i = 0; i <= 7; i += 7)
