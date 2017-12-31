@@ -38,7 +38,7 @@ namespace Chess
             {
                 if (firstStep)
                 {
-                    if (Y > 2 && Y <= 4 && Location.X == X && GameField.field[X, Y] == null)
+                    if (Y > 1 && Y <= 3 && Location.X == X && GameField.field[X, Y] == null)
                     {
                         ToDoStep(X, Y);
                         firstStep = false;
@@ -48,7 +48,6 @@ namespace Chess
                     ToDoStep(X, Y);
                 else if (Y - Location.Y == 1 && Math.Abs(X - Location.X) == 1 && GameField.field[X, Y].player.color != player.color)
                     ToDoStep(X, Y);
-                else throw new Exception("Пешка Не может Сюда пойти :(");
             }
         }
 
@@ -64,18 +63,31 @@ namespace Chess
     class King : IFigure
     {
         public Point Location { get; set; }
-        public bool firstStep { get; set; }
+        public bool castlingPossible { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
         public King(int X, int Y, Player player)
         {
             Location = new Point(X, Y);
-            firstStep = true;
+            castlingPossible = true;
             this.player = player;
             if (this.player.color == Player.Color.White)
                 bitmap = new Bitmap("king11.png");
             else
                 bitmap = new Bitmap("king22.png");
+        }
+        public void Step(int X, int Y)
+        {
+            var oldPoint = Location;
+            Location = new Point(X, Y);
+            castlingPossible = true;
+            if (castlingPossible)
+            {
+                if (Math.Abs(oldPoint.X-X) == 2 && oldPoint.Y == Y )//проверить еще, пусто ли между королем и ладьей
+
+
+            }
+
         }
     }
 
