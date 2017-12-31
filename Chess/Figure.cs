@@ -38,29 +38,29 @@ namespace Chess
             {
                 if (firstStep && Y > 1 && Y <= 3 && Location.X == X && GameField.field[X, Y] == null)
                 {
-                    ToDoStep(X, Y);
+                    DoStep(X, Y);
                     firstStep = false;
                 }
                 else if (Y - Location.Y == 1 && Location.X == X && GameField.field[X, Y] == null)
-                    ToDoStep(X, Y);
+                    DoStep(X, Y);
                 else if (Y - Location.Y == 1 && Math.Abs(X - Location.X) == 1 && GameField.field[X, Y].player.color != player.color)
-                    ToDoStep(X, Y);
+                    DoStep(X, Y);
             }
             else
             {
                 if (firstStep && Y < 6 && Y >= 4 && Location.X == X && GameField.field[X, Y] == null)
                 {
-                    ToDoStep(X, Y);
+                    DoStep(X, Y);
                     firstStep = false;
                 }
                 else if (Location.Y - Y == 1 && Location.X == X && GameField.field[X, Y] == null)
-                    ToDoStep(X, Y);
+                    DoStep(X, Y);
                 else if (Location.Y - Y == 1 && Math.Abs(Location.X - X) == 1 && GameField.field[X, Y].player.color != player.color)
-                    ToDoStep(X, Y);
+                    DoStep(X, Y);
             }
         }
 
-        private void ToDoStep(int X, int Y)
+        private void DoStep(int X, int Y)
         {
             var oldPoint = Location;
             Location = new Point(X, Y);
@@ -73,12 +73,14 @@ namespace Chess
     {
         public Point Location { get; set; }
         public bool castlingPossible { get; set; }
+        public bool whiteOnTop;
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
-        public King(int X, int Y, Player player)
+        public King(int X, int Y, bool isOnTop, Player player)
         {
             Location = new Point(X, Y);
             castlingPossible = true;
+            this.whiteOnTop = isOnTop;
             this.player = player;
             if (this.player.color == Player.Color.White)
                 bitmap = new Bitmap("king11.png");
@@ -92,12 +94,29 @@ namespace Chess
             castlingPossible = true;
             if (castlingPossible)
             {
-                if (Math.Abs(oldPoint.X-X) == 2 && oldPoint.Y == Y )//проверить еще, пусто ли между королем и ладьей
-
-
+                if (whiteOnTop)
+                    if (oldPoint.Y == Y && (oldPoint.X - X == 2 && GameField.field[1, Y] == null && GameField.field[2, Y] == null && GameField.field[Y,0]!=null && GameField.field[Y,0].firstStep) || (oldPoint.X - X == -2 && GameField.field[6, Y] == null && GameField.field[5, Y] == null && GameField.field[4, Y] == null))
+                    {
+                        DoStep(X, Y);
+                        castlingPossible = false;
+                    }
+                    else;
+                else
+                if (oldPoint.Y == Y && (oldPoint.X - X == 2 && GameField.field[1, Y] == null && GameField.field[2, Y] == null && GameField.field[3, Y] == null) || (oldPoint.X - X == 2 && GameField.field[5, Y] == null && GameField.field[6, Y] == null))
+                {
+                    DoStep(X, Y);
+                    castlingPossible = false;
+                }
             }
-
         }
+        private void DoStep(int X, int Y)
+        {
+            var oldPoint = Location;
+            Location = new Point(X, Y);
+            GameField.field[Location.X, Location.Y] = GameField.field[oldPoint.X, oldPoint.Y];
+            GameField.field[oldPoint.X, oldPoint.Y] = null;
+        }
+
     }
 
     class Queen : IFigure
@@ -152,9 +171,11 @@ namespace Chess
         public Point Location { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
+        public bool firsStep;
         public Rook(int X, int Y, Player player)
         {
             Location = new Point(X, Y);
+            firsStep = true;
             this.player = player;
             if (this.player.color == Player.Color.White)
                 bitmap = new Bitmap("rook11.png");
