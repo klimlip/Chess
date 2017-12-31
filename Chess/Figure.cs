@@ -34,35 +34,70 @@ namespace Chess
         }
         public void Step(int X, int Y)
         {
+            #region
+            //if (!isOnTop)
+            //{
+            //    if (firstStep && Y > 1 && Y <= 3 && Location.X == X && GameField.field[X, Y] == null)
+            //    {
+            //        ToDoStep(X, Y);
+            //        firstStep = false;
+            //    }
+            //    else if (Y - Location.Y == 1 && Location.X == X && GameField.field[X, Y] == null)
+            //        ToDoStep(X, Y);
+            //    else if (Y - Location.Y == 1 && Math.Abs(X - Location.X) == 1 && GameField.field[X, Y].player.color != player.color)
+            //        ToDoStep(X, Y);
+            //}
+            //else
+            //{
+            //    if (firstStep && Y < 6 && Y >= 4 && Location.X == X && GameField.field[X, Y] == null)
+            //    {
+            //        ToDoStep(X, Y);
+            //        firstStep = false;
+            //    }
+            //    else if (Location.Y - Y == 1 && Location.X == X && GameField.field[X, Y] == null)
+            //        ToDoStep(X, Y);
+            //    else if (Location.Y - Y == 1 && Math.Abs(Location.X - X) == 1 && GameField.field[X, Y].player.color != player.color)
+            //        ToDoStep(X, Y);
+            //}
+#endregion
+
+            var a = WhereCanIGo();
+            if (a[X, Y] == true)
+                ToDoStep(X, Y);
+        }
+
+        public bool[,] WhereCanIGo()
+        {
+            bool[,] ret = new bool[8, 8];
             if (!isOnTop)
             {
-                if (firstStep && Y > 1 && Y <= 3 && Location.X == X && GameField.field[X, Y] == null)
-                {
-                    ToDoStep(X, Y);
-                    firstStep = false;
-                }
-                else if (Y - Location.Y == 1 && Location.X == X && GameField.field[X, Y] == null)
-                    ToDoStep(X, Y);
-                else if (Y - Location.Y == 1 && Math.Abs(X - Location.X) == 1 && GameField.field[X, Y].player.color != player.color)
-                    ToDoStep(X, Y);
+                if ((firstStep && (GameField.field[Location.X, Location.Y + 1] == null && GameField.field[Location.X, Location.Y + 2] == null)))
+                    ret[Location.X, Location.Y + 2] = true;
+                if (GameField.field[Location.X, Location.Y + 1] == null)
+                    ret[Location.X, Location.Y + 1] = true;
+                if (GameField.field[Location.X + 1, Location.Y + 1].player.color != player.color)
+                    ret[Location.X + 1, Location.Y + 1] = true;
+                if (GameField.field[Location.X - 1, Location.Y + 1].player.color != player.color)
+                    ret[Location.X - 1, Location.Y + 1] = true;
             }
             else
             {
-                if (firstStep && Y < 6 && Y >= 4 && Location.X == X && GameField.field[X, Y] == null)
-                {
-                    ToDoStep(X, Y);
-                    firstStep = false;
-                }
-                else if (Location.Y - Y == 1 && Location.X == X && GameField.field[X, Y] == null)
-                    ToDoStep(X, Y);
-                else if (Location.Y - Y == 1 && Math.Abs(Location.X - X) == 1 && GameField.field[X, Y].player.color != player.color)
-                    ToDoStep(X, Y);
+                if ((firstStep && (GameField.field[Location.X, Location.Y - 1] == null && GameField.field[Location.X, Location.Y - 2] == null)))
+                    ret[Location.X, Location.Y - 2] = true;
+                if (GameField.field[Location.X, Location.Y - 1] == null)
+                    ret[Location.X, Location.Y + 1] = true;
+                if (GameField.field[Location.X + 1, Location.Y - 1].player.color != player.color)
+                    ret[Location.X + 1, Location.Y - 1] = true;
+                if (GameField.field[Location.X - 1, Location.Y - 1].player.color != player.color)
+                    ret[Location.X - 1, Location.Y - 1] = true;
             }
+            return ret;
         }
 
         private void ToDoStep(int X, int Y)
         {
             var oldPoint = Location;
+            firstStep = false;
             Location = new Point(X, Y);
             GameField.field[Location.X, Location.Y] = GameField.field[oldPoint.X, oldPoint.Y];
             GameField.field[oldPoint.X, oldPoint.Y] = null;
