@@ -71,29 +71,6 @@ namespace Chess
             bool[,] ret = new bool[8, 8];
             if (!isOnTop)
             {
-<<<<<<< HEAD
-                if (firstStep && Y > 1 && Y <= 3 && Location.X == X && GameField.field[X, Y] == null)
-                {
-                    DoStep(X, Y);
-                    firstStep = false;
-                }
-                else if (Y - Location.Y == 1 && Location.X == X && GameField.field[X, Y] == null)
-                    DoStep(X, Y);
-                else if (Y - Location.Y == 1 && Math.Abs(X - Location.X) == 1 && GameField.field[X, Y].player.color != player.color)
-                    DoStep(X, Y);
-            }
-            else
-            {
-                if (firstStep && Y < 6 && Y >= 4 && Location.X == X && GameField.field[X, Y] == null)
-                {
-                    DoStep(X, Y);
-                    firstStep = false;
-                }
-                else if (Location.Y - Y == 1 && Location.X == X && GameField.field[X, Y] == null)
-                    DoStep(X, Y);
-                else if (Location.Y - Y == 1 && Math.Abs(Location.X - X) == 1 && GameField.field[X, Y].player.color != player.color)
-                    DoStep(X, Y);
-=======
                 if ((firstStep && (GameField.field[Location.X, Location.Y + 1] == null && GameField.field[Location.X, Location.Y + 2] == null)))
                     ret[Location.X, Location.Y + 2] = true;
                 if (GameField.field[Location.X, Location.Y + 1] == null)
@@ -113,7 +90,6 @@ namespace Chess
                     ret[Location.X + 1, Location.Y - 1] = true;
                 if (GameField.field[Location.X - 1, Location.Y - 1].player.color != player.color)
                     ret[Location.X - 1, Location.Y - 1] = true;
->>>>>>> 1f96846e719e4fbaae9e896e972a41e60b191800
             }
             return ret;
         }
