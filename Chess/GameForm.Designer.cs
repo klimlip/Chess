@@ -76,6 +76,7 @@
             this.rbWhiteOnTop.TabStop = true;
             this.rbWhiteOnTop.Text = "Белые вверху";
             this.rbWhiteOnTop.UseVisualStyleBackColor = true;
+            this.rbWhiteOnTop.CheckedChanged += new System.EventHandler(this.rbWhiteOnTop_CheckedChanged);
             // 
             // gbPlayer1
             // 

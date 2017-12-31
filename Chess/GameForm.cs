@@ -55,9 +55,12 @@ namespace Chess
 
         private void btPlay_Click(object sender, EventArgs e)
         {
-            bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
-            gameField.NewGame(firstIsHuman, secondIsHuman, WhiteOnTop);
-            p.Draw(g, GameField.field);
+
+        }
+
+        private void rbWhiteOnTop_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
