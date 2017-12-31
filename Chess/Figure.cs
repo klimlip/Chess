@@ -36,17 +36,26 @@ namespace Chess
         {
             if (!isOnTop)
             {
-                if (firstStep)
+                if (firstStep && Y > 1 && Y <= 3 && Location.X == X && GameField.field[X, Y] == null)
                 {
-                    if (Y > 1 && Y <= 3 && Location.X == X && GameField.field[X, Y] == null)
-                    {
-                        ToDoStep(X, Y);
-                        firstStep = false;
-                    }
+                    ToDoStep(X, Y);
+                    firstStep = false;
                 }
                 else if (Y - Location.Y == 1 && Location.X == X && GameField.field[X, Y] == null)
                     ToDoStep(X, Y);
                 else if (Y - Location.Y == 1 && Math.Abs(X - Location.X) == 1 && GameField.field[X, Y].player.color != player.color)
+                    ToDoStep(X, Y);
+            }
+            else
+            {
+                if (firstStep && Y < 6 && Y >= 4 && Location.X == X && GameField.field[X, Y] == null)
+                {
+                    ToDoStep(X, Y);
+                    firstStep = false;
+                }
+                else if (Location.Y - Y == 1 && Location.X == X && GameField.field[X, Y] == null)
+                    ToDoStep(X, Y);
+                else if (Location.Y - Y == 1 && Math.Abs(Location.X - X) == 1 && GameField.field[X, Y].player.color != player.color)
                     ToDoStep(X, Y);
             }
         }
