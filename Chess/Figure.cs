@@ -75,10 +75,12 @@ namespace Chess
                     ret[Location.X, Location.Y + 2] = true;
                 if (GameField.field[Location.X, Location.Y + 1] == null)
                     ret[Location.X, Location.Y + 1] = true;
-                if (GameField.field[Location.X + 1, Location.Y + 1] != null && GameField.field[Location.X + 1, Location.Y + 1].player.color != player.color)
-                    ret[Location.X + 1, Location.Y + 1] = true;
-                if (GameField.field[Location.X - 1, Location.Y + 1] != null && GameField.field[Location.X - 1, Location.Y + 1].player.color != player.color)
-                    ret[Location.X - 1, Location.Y + 1] = true;
+                if(Location.X !=7)
+                    if (GameField.field[Location.X + 1, Location.Y + 1] != null && GameField.field[Location.X + 1, Location.Y + 1].player.color != player.color)
+                        ret[Location.X + 1, Location.Y + 1] = true;
+                if(Location.X !=0)
+                    if (GameField.field[Location.X - 1, Location.Y + 1] != null && GameField.field[Location.X - 1, Location.Y + 1].player.color != player.color)
+                        ret[Location.X - 1, Location.Y + 1] = true;
             }
             else
             {
@@ -86,10 +88,12 @@ namespace Chess
                     ret[Location.X, Location.Y - 2] = true;
                 if (GameField.field[Location.X, Location.Y - 1] == null)
                     ret[Location.X, Location.Y + 1] = true;
-                if (GameField.field[Location.X + 1, Location.Y - 1] != null && GameField.field[Location.X + 1, Location.Y - 1].player.color != player.color)
-                    ret[Location.X + 1, Location.Y - 1] = true;
-                if (GameField.field[Location.X - 1, Location.Y - 1] != null && GameField.field[Location.X - 1, Location.Y - 1].player.color != player.color)
-                    ret[Location.X - 1, Location.Y - 1] = true;
+                if (Location.X != 7)
+                    if (GameField.field[Location.X + 1, Location.Y - 1] != null && GameField.field[Location.X + 1, Location.Y - 1].player.color != player.color)
+                        ret[Location.X + 1, Location.Y - 1] = true;
+                if (Location.X != 0)
+                    if (GameField.field[Location.X - 1, Location.Y - 1] != null && GameField.field[Location.X - 1, Location.Y - 1].player.color != player.color)
+                        ret[Location.X - 1, Location.Y - 1] = true;
             }
             return ret;
         }

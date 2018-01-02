@@ -18,10 +18,11 @@ namespace Chess
 
         public void Draw(Graphics g, IFigure[,] field)
         {
+            g.Clear(Color.White);
             g.DrawImage(background, 0, 0, 500, 500);
 
             foreach (var f in field)
-            {
+            { 
                 if (f != null)
                 {
                     var p = LocationInForm(f);
