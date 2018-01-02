@@ -31,6 +31,18 @@ namespace Chess
             }
         }
 
+        public static void WhereCanFigureGo(Graphics g, IFigure ifi)
+        {
+            var a = ifi.WhereCanIGo();
+            for (int i = 0; i < 8; i++)
+                for (int j = 0; j < 8; j++)
+                    if (a[j, i] == false)
+                    {
+                        g.FillEllipse(Brushes.Red, 32 + i * 55, 32 + j * 55, 600, 600);
+                        //g.DrawEllipse(Pens.Red,  );
+                    }
+        }
+
         private static Point LocationInForm(IFigure f)
         {
             Point ret = new Point(32 + f.Location.X * 55, 32 + f.Location.Y * 55);
