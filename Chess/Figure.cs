@@ -64,6 +64,15 @@ namespace Chess
             var a = WhereCanIGo();
             if (a[X, Y] == true)
                 ToDoStep(X, Y);
+            if ((!isOnTop && Location.Y == 7 ) || (isOnTop && Location.Y == 0))
+            {
+                GameField.newFigureX = Location.X;
+                GameField.newFigureY = Location.Y;
+                GameField.newPlayer = player;
+                var window = new Choose_Figure();
+                window.ShowDialog();
+            }
+
         }
 
         public bool[,] WhereCanIGo()
@@ -87,7 +96,7 @@ namespace Chess
                 if ((firstStep && (GameField.field[Location.X, Location.Y - 1] == null && GameField.field[Location.X, Location.Y - 2] == null)))
                     ret[Location.X, Location.Y - 2] = true;
                 if (GameField.field[Location.X, Location.Y - 1] == null)
-                    ret[Location.X, Location.Y + 1] = true;
+                    ret[Location.X, Location.Y - 1] = true;
                 if (Location.X != 7)
                     if (GameField.field[Location.X + 1, Location.Y - 1] != null && GameField.field[Location.X + 1, Location.Y - 1].player.color != player.color)
                         ret[Location.X + 1, Location.Y - 1] = true;
@@ -512,7 +521,10 @@ namespace Chess
 
         public void Step(int X, int Y)
         {
-
+            var oldPoint = Location;
+            Location = new Point(X, Y);
+            GameField.field[Location.X, Location.Y] = GameField.field[oldPoint.X, oldPoint.Y];
+            GameField.field[oldPoint.X, oldPoint.Y] = null;
         }
     }
 

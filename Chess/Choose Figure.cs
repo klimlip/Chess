@@ -19,7 +19,34 @@ namespace Chess
 
         private void radioButton_Queen_CheckedChanged(object sender, EventArgs e)
         {
-                
+        }
+
+        private void button_Queen_Click(object sender, EventArgs e)
+        {
+            GameField.field[GameField.newFigureX, GameField.newFigureY] = new Queen(GameField.newFigureX, GameField.newFigureY, GameField.newPlayer);
+            Choose_Figure.ActiveForm.Close();
+
+        }
+
+        private void button_Knight_Click(object sender, EventArgs e)
+        {
+            GameField.field[GameField.newFigureX, GameField.newFigureY] = new Knight(GameField.newFigureX, GameField.newFigureY, GameField.newPlayer);
+            Choose_Figure.ActiveForm.Close();
+
+        }
+
+        private void button_Bishop_Click(object sender, EventArgs e)
+        {
+            GameField.field[GameField.newFigureX, GameField.newFigureY] = new Bishop(GameField.newFigureX, GameField.newFigureY, GameField.newPlayer);
+            Choose_Figure.ActiveForm.Close();
+
+        }
+
+        private void buttpn_Rook_Click(object sender, EventArgs e)
+        {
+            GameField.field[GameField.newFigureX, GameField.newFigureY] = new Rook(GameField.newFigureX, GameField.newFigureY, GameField.newPlayer);
+            Choose_Figure.ActiveForm.Close();
+
         }
     }
 }

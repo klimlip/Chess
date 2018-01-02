@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gbColor = new System.Windows.Forms.GroupBox();
             this.rbBlackOnTop = new System.Windows.Forms.RadioButton();
             this.rbWhiteOnTop = new System.Windows.Forms.RadioButton();
@@ -38,6 +39,7 @@
             this.rbPlayer2IsComputer = new System.Windows.Forms.RadioButton();
             this.rbPlayer2IsHuman = new System.Windows.Forms.RadioButton();
             this.btPlay = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.gbColor.SuspendLayout();
             this.gbPlayer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -189,6 +191,7 @@
         private System.Windows.Forms.RadioButton rbPlayer2IsComputer;
         private System.Windows.Forms.RadioButton rbPlayer2IsHuman;
         private System.Windows.Forms.Button btPlay;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

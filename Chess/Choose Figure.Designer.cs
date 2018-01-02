@@ -28,81 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radioButton_Queen = new System.Windows.Forms.RadioButton();
-            this.radioButton_Knight = new System.Windows.Forms.RadioButton();
-            this.radioButton_Bishop = new System.Windows.Forms.RadioButton();
-            this.radioButton_Rook = new System.Windows.Forms.RadioButton();
+            this.button_Queen = new System.Windows.Forms.Button();
+            this.button_Knight = new System.Windows.Forms.Button();
+            this.button_Bishop = new System.Windows.Forms.Button();
+            this.buttpn_Rook = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // radioButton_Queen
+            // button_Queen
             // 
-            this.radioButton_Queen.AutoSize = true;
-            this.radioButton_Queen.Location = new System.Drawing.Point(83, 12);
-            this.radioButton_Queen.Name = "radioButton_Queen";
-            this.radioButton_Queen.Size = new System.Drawing.Size(57, 17);
-            this.radioButton_Queen.TabIndex = 0;
-            this.radioButton_Queen.TabStop = true;
-            this.radioButton_Queen.Text = "Queen";
-            this.radioButton_Queen.UseVisualStyleBackColor = true;
-            this.radioButton_Queen.CheckedChanged += new System.EventHandler(this.radioButton_Queen_CheckedChanged);
+            this.button_Queen.Location = new System.Drawing.Point(72, 12);
+            this.button_Queen.Name = "button_Queen";
+            this.button_Queen.Size = new System.Drawing.Size(75, 23);
+            this.button_Queen.TabIndex = 4;
+            this.button_Queen.Text = "Queen";
+            this.button_Queen.UseVisualStyleBackColor = true;
+            this.button_Queen.Click += new System.EventHandler(this.button_Queen_Click);
             // 
-            // radioButton_Knight
+            // button_Knight
             // 
-            this.radioButton_Knight.AutoSize = true;
-            this.radioButton_Knight.Location = new System.Drawing.Point(83, 35);
-            this.radioButton_Knight.Name = "radioButton_Knight";
-            this.radioButton_Knight.Size = new System.Drawing.Size(55, 17);
-            this.radioButton_Knight.TabIndex = 1;
-            this.radioButton_Knight.TabStop = true;
-            this.radioButton_Knight.Text = "Knight";
-            this.radioButton_Knight.UseVisualStyleBackColor = true;
-            this.radioButton_Knight.CheckedChanged += new System.EventHandler(this.radioButton_Queen_CheckedChanged);
+            this.button_Knight.Location = new System.Drawing.Point(72, 41);
+            this.button_Knight.Name = "button_Knight";
+            this.button_Knight.Size = new System.Drawing.Size(75, 23);
+            this.button_Knight.TabIndex = 5;
+            this.button_Knight.Text = "Knight";
+            this.button_Knight.UseVisualStyleBackColor = true;
+            this.button_Knight.Click += new System.EventHandler(this.button_Knight_Click);
             // 
-            // radioButton_Bishop
+            // button_Bishop
             // 
-            this.radioButton_Bishop.AutoSize = true;
-            this.radioButton_Bishop.Location = new System.Drawing.Point(83, 58);
-            this.radioButton_Bishop.Name = "radioButton_Bishop";
-            this.radioButton_Bishop.Size = new System.Drawing.Size(57, 17);
-            this.radioButton_Bishop.TabIndex = 2;
-            this.radioButton_Bishop.TabStop = true;
-            this.radioButton_Bishop.Text = "Bishop";
-            this.radioButton_Bishop.UseVisualStyleBackColor = true;
-            this.radioButton_Bishop.CheckedChanged += new System.EventHandler(this.radioButton_Queen_CheckedChanged);
+            this.button_Bishop.Location = new System.Drawing.Point(72, 70);
+            this.button_Bishop.Name = "button_Bishop";
+            this.button_Bishop.Size = new System.Drawing.Size(75, 23);
+            this.button_Bishop.TabIndex = 6;
+            this.button_Bishop.Text = "Bishop";
+            this.button_Bishop.UseCompatibleTextRendering = true;
+            this.button_Bishop.UseVisualStyleBackColor = true;
+            this.button_Bishop.Click += new System.EventHandler(this.button_Bishop_Click);
             // 
-            // radioButton_Rook
+            // buttpn_Rook
             // 
-            this.radioButton_Rook.AutoSize = true;
-            this.radioButton_Rook.Location = new System.Drawing.Point(83, 81);
-            this.radioButton_Rook.Name = "radioButton_Rook";
-            this.radioButton_Rook.Size = new System.Drawing.Size(51, 17);
-            this.radioButton_Rook.TabIndex = 3;
-            this.radioButton_Rook.TabStop = true;
-            this.radioButton_Rook.Text = "Rook";
-            this.radioButton_Rook.UseVisualStyleBackColor = true;
-            this.radioButton_Rook.CheckedChanged += new System.EventHandler(this.radioButton_Queen_CheckedChanged);
+            this.buttpn_Rook.Location = new System.Drawing.Point(72, 99);
+            this.buttpn_Rook.Name = "buttpn_Rook";
+            this.buttpn_Rook.Size = new System.Drawing.Size(75, 23);
+            this.buttpn_Rook.TabIndex = 7;
+            this.buttpn_Rook.Text = "Rook";
+            this.buttpn_Rook.UseVisualStyleBackColor = true;
+            this.buttpn_Rook.Click += new System.EventHandler(this.buttpn_Rook_Click);
             // 
             // Choose_Figure
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(230, 104);
-            this.Controls.Add(this.radioButton_Rook);
-            this.Controls.Add(this.radioButton_Bishop);
-            this.Controls.Add(this.radioButton_Knight);
-            this.Controls.Add(this.radioButton_Queen);
+            this.ClientSize = new System.Drawing.Size(230, 131);
+            this.Controls.Add(this.buttpn_Rook);
+            this.Controls.Add(this.button_Bishop);
+            this.Controls.Add(this.button_Knight);
+            this.Controls.Add(this.button_Queen);
             this.Name = "Choose_Figure";
             this.Text = "Choose_Figure";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.RadioButton radioButton_Queen;
-        private System.Windows.Forms.RadioButton radioButton_Knight;
-        private System.Windows.Forms.RadioButton radioButton_Bishop;
-        private System.Windows.Forms.RadioButton radioButton_Rook;
+        private System.Windows.Forms.Button button_Queen;
+        private System.Windows.Forms.Button button_Knight;
+        private System.Windows.Forms.Button button_Bishop;
+        private System.Windows.Forms.Button buttpn_Rook;
     }
 }
