@@ -12,30 +12,30 @@ namespace Chess
 {
     public partial class GameForm : Form
     {
+        Graphics g;
+        Game myGame;
+
         public GameForm()
         {
             InitializeComponent();
+            g = CreateGraphics();
+            bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
+            myGame = new Game(firstIsHuman, secondIsHuman, WhiteOnTop, g);
+            myGame.Draw(g);
         }
 
-        Graphics g;
-        GameField gameField = new GameField();
-        Painter p = new Painter();
+
         public void Draw(bool IDontKnowWhyThisIsNecessary)
         {
             g = CreateGraphics();
-            //Painter p = new Painter();
-            //GameField gameField = new GameField();
-            bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
-            gameField.NewGame(firstIsHuman, secondIsHuman, WhiteOnTop);
-            //Rectangle re = new Rectangle(0, 0, 256, 256);
-            p.Draw(g, GameField.field);
+            myGame.Draw(g);
         }
 
         private void rbBlackOnTop_CheckedChanged(object sender, EventArgs e)
         {
             bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
-            gameField.NewGame(firstIsHuman, secondIsHuman, WhiteOnTop);
-            p.Draw(g, GameField.field);
+            myGame = new Game(firstIsHuman, secondIsHuman, WhiteOnTop, g);
+            
         }
 
         protected override CreateParams CreateParams
@@ -58,8 +58,7 @@ namespace Chess
             GameField.field[1, 1].Step(1, 3);
             GameField.field[0, 6].Step(0, 4);
             GameField.field[1, 3].Step(0, 4);
-            p.Draw(g, GameField.field);
-
+            myGame.Draw(g);
         }
 
         private void rbWhiteOnTop_CheckedChanged(object sender, EventArgs e)

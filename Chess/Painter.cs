@@ -18,7 +18,7 @@ namespace Chess
 
         public void Draw(Graphics g, IFigure[,] field)
         {
-            g.Clear(Color.White);
+            g.Clear(Color.FromArgb(155, 123, 198));
             g.DrawImage(background, 0, 0, 500, 500);
 
             foreach (var f in field)
