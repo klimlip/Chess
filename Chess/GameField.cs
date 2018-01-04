@@ -20,14 +20,14 @@ namespace Chess
             if (!WhiteOnTop)
                 for (int i = 0; i <= 7; i++)
                 {
-                    //field[i, 1] = new Pawn(i, 1, false, player1);
-                    //field[i, 6] = new Pawn(i, 6, true,  player2);
+                    field[i, 1] = new Pawn(i, 1, false, player1);
+                    field[i, 6] = new Pawn(i, 6, true, player2);
                 }
             else
                 for (int i = 0; i <= 7; i++)
                 {
-                    //field[i, 1] = new Pawn(i, 6, true, player1);
-                    //field[i, 6] = new Pawn(i, 1, false, player2);
+                    field[i, 1] = new Pawn(i, 6, true, player1);
+                    field[i, 6] = new Pawn(i, 1, false, player2);
                 } // создаем пешки
             if (!WhiteOnTop)
                 for (int i = 0; i <= 7; i += 7)
@@ -86,6 +86,23 @@ namespace Chess
         public static Point PointFromForm(Point inForm)
         {
             return new Point((inForm.X - 32) / 55, (inForm.Y - 32) / 55);
+        }
+
+        public static void FindFigureFromPoint(Point p)
+        {
+            for( int i = 0; i < 8; i++)
+                for( int j = 0; j < 8; j++)
+                {
+                    if (field[i, j] != null && field[i, j].Location.X == p.X && field[i, j].Location.Y == p.Y)
+                    {
+                        Game.selectFigure = field[i, j];
+                        break;
+                    }
+                }
+            if (Game.selectFigure == null)
+                throw new Exception("Слепой? Фигур не видишь что-ли?");
+
+
         }
     }
 }

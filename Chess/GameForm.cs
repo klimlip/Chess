@@ -21,7 +21,6 @@ namespace Chess
             g = CreateGraphics();
             bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
             myGame = new Game(firstIsHuman, secondIsHuman, WhiteOnTop, g);
-            myGame.Draw(g);
         }
 
 
@@ -29,13 +28,6 @@ namespace Chess
         {
             g = CreateGraphics();
             myGame.Draw(g);
-        }
-
-        private void rbBlackOnTop_CheckedChanged(object sender, EventArgs e)
-        {
-            bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
-            myGame = new Game(firstIsHuman, secondIsHuman, WhiteOnTop, g);
-            
         }
 
         protected override CreateParams CreateParams
@@ -55,28 +47,39 @@ namespace Chess
 
         private void btPlay_Click(object sender, EventArgs e)
         {
-            GameField.field[3, 0].Step(6,3);
-            GameField.field[3, 7].Step(3, 0);
-            GameField.field[5, 0].Step(3, 2);
-            GameField.field[2, 7].Step(6, 3);
-            GameField.field[0, 0].Step(1,0);
-
-
-
+            bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
+            myGame = new Game(firstIsHuman, secondIsHuman, WhiteOnTop, g);
             myGame.Draw(g);
-
-        }
-
-        private void rbWhiteOnTop_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void GameForm_MouseDown(object sender, MouseEventArgs e)
         {
-            var a = new Point(e.X, e.Y);
-            var b = GameField.PointFromForm(a);
-            Painter.WhereCanFigureGo(g, GameField.field[b.X, b.Y]);
+            try
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    var point = GameField.PointFromForm(e.Location);
+                    myGame.FirstPartOfStep(point);
+                }
+                if (e.Button == MouseButtons.Right)
+                {
+                    var point = GameField.PointFromForm(new Point(e.X, e.Y));
+                    myGame.SecondPartOfStep(point, g);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //Painter.WhereCanFigureGo(g, GameField.field[b.X, b.Y]);
+        }
+
+        private void rbWhiteOnTop_CheckedChanged(object sender, EventArgs e)
+        {
+            bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
+            myGame = new Game(firstIsHuman, secondIsHuman, WhiteOnTop, g);
+            myGame.Draw(g);
         }
     }
 }

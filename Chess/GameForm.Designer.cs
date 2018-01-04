@@ -38,7 +38,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbPlayer2IsComputer = new System.Windows.Forms.RadioButton();
             this.rbPlayer2IsHuman = new System.Windows.Forms.RadioButton();
-            this.btPlay = new System.Windows.Forms.Button();
+            this.btNewGame = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.gbColor.SuspendLayout();
             this.gbPlayer1.SuspendLayout();
@@ -67,7 +67,7 @@
             this.rbBlackOnTop.TabStop = true;
             this.rbBlackOnTop.Text = "Белые внизу";
             this.rbBlackOnTop.UseVisualStyleBackColor = true;
-            this.rbBlackOnTop.CheckedChanged += new System.EventHandler(this.rbBlackOnTop_CheckedChanged);
+            this.rbBlackOnTop.CheckedChanged += new System.EventHandler(this.rbWhiteOnTop_CheckedChanged);
             // 
             // rbWhiteOnTop
             // 
@@ -146,23 +146,23 @@
             this.rbPlayer2IsHuman.Text = "Человеком";
             this.rbPlayer2IsHuman.UseVisualStyleBackColor = true;
             // 
-            // btPlay
+            // btNewGame
             // 
-            this.btPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btPlay.Location = new System.Drawing.Point(533, 304);
-            this.btPlay.Name = "btPlay";
-            this.btPlay.Size = new System.Drawing.Size(139, 42);
-            this.btPlay.TabIndex = 4;
-            this.btPlay.Text = "Играть!";
-            this.btPlay.UseVisualStyleBackColor = true;
-            this.btPlay.Click += new System.EventHandler(this.btPlay_Click);
+            this.btNewGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btNewGame.Location = new System.Drawing.Point(533, 304);
+            this.btNewGame.Name = "btNewGame";
+            this.btNewGame.Size = new System.Drawing.Size(139, 42);
+            this.btNewGame.TabIndex = 4;
+            this.btNewGame.Text = "Новая Игра";
+            this.btNewGame.UseVisualStyleBackColor = true;
+            this.btNewGame.Click += new System.EventHandler(this.btPlay_Click);
             // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 501);
-            this.Controls.Add(this.btPlay);
+            this.Controls.Add(this.btNewGame);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbPlayer1);
             this.Controls.Add(this.gbColor);
@@ -191,7 +191,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rbPlayer2IsComputer;
         private System.Windows.Forms.RadioButton rbPlayer2IsHuman;
-        private System.Windows.Forms.Button btPlay;
+        private System.Windows.Forms.Button btNewGame;
         private System.Windows.Forms.Timer timer1;
     }
 }

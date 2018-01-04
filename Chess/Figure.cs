@@ -13,7 +13,7 @@ namespace Chess
         Player player { get; set; }
         Bitmap bitmap { get; set; }
         bool[,] WhereCanIGo();
-        void Step(int X, int Y);
+        bool Step(int X, int Y);
     }
     public class Pawn : IFigure
     {
@@ -35,7 +35,7 @@ namespace Chess
                 bitmap = new Bitmap("pawn22.png");
         }
 
-        public void Step(int X, int Y)
+        public bool Step(int X, int Y)
         {
             #region
             //if (!isOnTop)
@@ -66,6 +66,7 @@ namespace Chess
             var a = WhereCanIGo();
             if (a[X, Y] == true)
                 ToDoStep(X, Y);
+            else return false;
             if ((!isOnTop && Location.Y == 7 ) || (isOnTop && Location.Y == 0))
             {
                 GameField.newFigureX = Location.X;
@@ -74,6 +75,7 @@ namespace Chess
                 var window = new Choose_Figure();
                 window.ShowDialog();
             }
+            return true;
 
         }
 
@@ -164,7 +166,7 @@ namespace Chess
             return ret;
         }
 
-        public void Step(int X, int Y)
+        public bool Step(int X, int Y)
         {
             var a = WhereCanIGo();
             if (a[X, Y] == true)
@@ -173,7 +175,9 @@ namespace Chess
                 Location = new Point(X, Y);
                 GameField.field[Location.X, Location.Y] = GameField.field[oldPoint.X, oldPoint.Y];
                 GameField.field[oldPoint.X, oldPoint.Y] = null;
+                return true;
             }
+            else return false;
         }
     }
     class Queen : IFigure
@@ -315,7 +319,7 @@ namespace Chess
             return ret;
         }
 
-        public void Step(int X, int Y)
+        public bool Step(int X, int Y)
         {
             var a = WhereCanIGo();
             if (a[X, Y] == true)
@@ -324,7 +328,9 @@ namespace Chess
                 Location = new Point(X, Y);
                 GameField.field[Location.X, Location.Y] = GameField.field[oldPoint.X, oldPoint.Y];
                 GameField.field[oldPoint.X, oldPoint.Y] = null;
+                return true;
             }
+            else return false;
         }
         
     } 
@@ -374,7 +380,7 @@ namespace Chess
             return ret;
         }
 
-        public void Step(int X, int Y)
+        public bool Step(int X, int Y)
         {
             var a = WhereCanIGo();
             if (a[X, Y] == true)
@@ -383,7 +389,9 @@ namespace Chess
                 Location = new Point(X, Y);
                 GameField.field[Location.X, Location.Y] = GameField.field[oldPoint.X, oldPoint.Y];
                 GameField.field[oldPoint.X, oldPoint.Y] = null;
+                return true;
             }
+            else return false;
         }
     }
     class Bishop : IFigure //слоник
@@ -468,7 +476,7 @@ namespace Chess
             return ret;
         }
 
-        public void Step(int X, int Y)
+        public bool Step(int X, int Y)
         {
             var a = WhereCanIGo();
             if (a[X, Y] == true)
@@ -477,7 +485,9 @@ namespace Chess
                 Location = new Point(X, Y);
                 GameField.field[Location.X, Location.Y] = GameField.field[oldPoint.X, oldPoint.Y];
                 GameField.field[oldPoint.X, oldPoint.Y] = null;
+                return true;
             }
+            else return false;
         }
     }
     class Rook : IFigure //ладья
@@ -558,7 +568,7 @@ namespace Chess
             return ret;
         }
 
-        public void Step(int X, int Y)
+        public bool Step(int X, int Y)
         {
             var a = WhereCanIGo();
             if (a[X, Y] == true)
@@ -567,7 +577,9 @@ namespace Chess
                 Location = new Point(X, Y);
                 GameField.field[Location.X, Location.Y] = GameField.field[oldPoint.X, oldPoint.Y];
                 GameField.field[oldPoint.X, oldPoint.Y] = null;
+                return true;
             }
+            else return false;
         }
     }
 }
