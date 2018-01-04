@@ -169,6 +169,7 @@
             this.Name = "GameForm";
             this.Text = "Сыграем?";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameForm_Paint);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GameForm_MouseDown);
             this.gbColor.ResumeLayout(false);
             this.gbColor.PerformLayout();
             this.gbPlayer1.ResumeLayout(false);

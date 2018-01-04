@@ -82,28 +82,34 @@ namespace Chess
             bool[,] ret = new bool[8, 8];
             if (!isOnTop)
             {
-                if ((firstStep && (GameField.field[Location.X, Location.Y + 1] == null && GameField.field[Location.X, Location.Y + 2] == null)))
+                if (firstStep && GameField.field[Location.X, Location.Y + 1] == null 
+                    && GameField.field[Location.X, Location.Y + 2] == null)
                     ret[Location.X, Location.Y + 2] = true;
                 if (GameField.field[Location.X, Location.Y + 1] == null)
                     ret[Location.X, Location.Y + 1] = true;
                 if(Location.X !=7)
-                    if (GameField.field[Location.X + 1, Location.Y + 1] != null && GameField.field[Location.X + 1, Location.Y + 1].player.color != player.color)
+                    if (GameField.field[Location.X + 1, Location.Y + 1] != null 
+                        && GameField.field[Location.X + 1, Location.Y + 1].player.color != player.color)
                         ret[Location.X + 1, Location.Y + 1] = true;
                 if(Location.X !=0)
-                    if (GameField.field[Location.X - 1, Location.Y + 1] != null && GameField.field[Location.X - 1, Location.Y + 1].player.color != player.color)
+                    if (GameField.field[Location.X - 1, Location.Y + 1] != null
+                        && GameField.field[Location.X - 1, Location.Y + 1].player.color != player.color)
                         ret[Location.X - 1, Location.Y + 1] = true;
             }
             else
             {
-                if ((firstStep && (GameField.field[Location.X, Location.Y - 1] == null && GameField.field[Location.X, Location.Y - 2] == null)))
+                if (firstStep && GameField.field[Location.X, Location.Y - 1] == null 
+                    && GameField.field[Location.X, Location.Y - 2] == null)
                     ret[Location.X, Location.Y - 2] = true;
                 if (GameField.field[Location.X, Location.Y - 1] == null)
                     ret[Location.X, Location.Y - 1] = true;
                 if (Location.X != 7)
-                    if (GameField.field[Location.X + 1, Location.Y - 1] != null && GameField.field[Location.X + 1, Location.Y - 1].player.color != player.color)
+                    if (GameField.field[Location.X + 1, Location.Y - 1] != null 
+                        && GameField.field[Location.X + 1, Location.Y - 1].player.color != player.color)
                         ret[Location.X + 1, Location.Y - 1] = true;
                 if (Location.X != 0)
-                    if (GameField.field[Location.X - 1, Location.Y - 1] != null && GameField.field[Location.X - 1, Location.Y - 1].player.color != player.color)
+                    if (GameField.field[Location.X - 1, Location.Y - 1] != null 
+                        && GameField.field[Location.X - 1, Location.Y - 1].player.color != player.color)
                         ret[Location.X - 1, Location.Y - 1] = true;
             }
             return ret;
@@ -136,24 +142,24 @@ namespace Chess
                 bitmap = new Bitmap("king22.png");
         }
 
-        public bool[,] WhereCanIGo()
+        public bool[,] WhereCanIGo() // нет рокировки
         {
             bool[,] ret = new bool[8, 8];
-            if (Location.X + 1 < 8 && Location.Y + 1 < 8 && GameField.field[Location.X + 1, Location.Y + 1].player.color != player.color)
+            if (Location.X + 1 < 8 && Location.Y + 1 < 8 && (GameField.field[Location.X + 1, Location.Y + 1] == null || GameField.field[Location.X + 1, Location.Y + 1].player.color != player.color))
                 ret[Location.X + 1, Location.Y + 1] = true;
-            if (Location.X + 1 < 8 && GameField.field[Location.X + 1, Location.Y].player.color != player.color)
+            if (Location.X + 1 < 8 && (GameField.field[Location.X + 1, Location.Y] == null || GameField.field[Location.X + 1, Location.Y].player.color != player.color))
                 ret[Location.X + 1, Location.Y] = true;
-            if (Location.X + 1 < 8 && Location.Y - 1 >=0 && GameField.field[Location.X + 1, Location.Y - 1].player.color != player.color)
+            if (Location.X + 1 < 8 && Location.Y - 1 >= 0 && (GameField.field[Location.X + 1, Location.Y - 1] == null || GameField.field[Location.X + 1, Location.Y - 1].player.color != player.color))
                 ret[Location.X + 1, Location.Y - 1] = true;
-            if (Location.X - 1 >= 0 && Location.Y + 1 < 8 && GameField.field[Location.X - 1, Location.Y + 1].player.color != player.color)
+            if (Location.X - 1 >= 0 && Location.Y + 1 < 8 && (GameField.field[Location.X - 1, Location.Y + 1] == null || GameField.field[Location.X - 1, Location.Y + 1].player.color != player.color))
                 ret[Location.X - 1, Location.Y + 1] = true;
-            if (Location.X - 1 >= 0 && GameField.field[Location.X - 1, Location.Y].player.color != player.color)
+            if (Location.X - 1 >= 0 && (GameField.field[Location.X - 1, Location.Y] == null || GameField.field[Location.X - 1, Location.Y].player.color != player.color))
                 ret[Location.X - 1, Location.Y] = true;
-            if (Location.X - 1 >= 0 && Location.Y - 1 >= 0 && GameField.field[Location.X - 1, Location.Y - 1].player.color != player.color)
+            if (Location.X - 1 >= 0 && Location.Y - 1 >= 0 && (GameField.field[Location.X - 1, Location.Y - 1] == null || GameField.field[Location.X - 1, Location.Y - 1].player.color != player.color))
                 ret[Location.X - 1, Location.Y - 1] = true;
-            if (Location.Y + 1 < 8 && GameField.field[Location.X, Location.Y + 1].player.color != player.color)
+            if (Location.Y + 1 < 8 && (GameField.field[Location.X, Location.Y + 1] == null || GameField.field[Location.X, Location.Y + 1].player.color != player.color))
                 ret[Location.X, Location.Y + 1] = true;
-            if (Location.Y - 1 >= 0 && GameField.field[Location.X, Location.Y - 1].player.color != player.color)
+            if (Location.Y - 1 >= 0 && (GameField.field[Location.X, Location.Y - 1] == null || GameField.field[Location.X, Location.Y - 1].player.color != player.color))
                 ret[Location.X, Location.Y - 1] = true;
             return ret;
         }
@@ -186,18 +192,18 @@ namespace Chess
                 bitmap = new Bitmap("queen22.png");
         }
 
-        public bool[,] WhereCanIGo()
+        public bool[,] WhereCanIGo()// ферзь прошел проверки на ходы во все стороны
         {
             bool[,] ret = new bool[8, 8];
             var x = Location.X;
             var y = Location.Y;
-            while (x >= 0)
+            while (x > 0)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x - 1, y] == null)
+                    ret[x - 1, y] = true;
+                else if (GameField.field[x - 1, y].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x - 1, y] = true;
                     break;
                 }
                 else break;
@@ -205,13 +211,13 @@ namespace Chess
             }
             x = Location.X;
             y = Location.Y;
-            while (x < 8)
+            while (x < 7)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x + 1, y] == null)
+                    ret[x + 1, y] = true;
+                else if (GameField.field[x + 1, y].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x + 1, y] = true;
                     break;
                 }
                 else break;
@@ -219,13 +225,13 @@ namespace Chess
             }
             x = Location.X;
             y = Location.Y;
-            while (y < 8)
+            while (y < 7)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x, y + 1] == null)
+                    ret[x, y + 1] = true;
+                else if (GameField.field[x, y + 1].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x, y + 1] = true;
                     break;
                 }
                 else break;
@@ -233,13 +239,13 @@ namespace Chess
             }
             x = Location.X;
             y = Location.Y;
-            while (y >= 0)
+            while (y > 0)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x, y - 1] == null)
+                    ret[x, y - 1] = true;
+                else if (GameField.field[x, y - 1].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x, y - 1] = true;
                     break;
                 }
                 else break;
@@ -247,13 +253,13 @@ namespace Chess
             }
             x = Location.X;
             y = Location.Y;
-            while (x < 8 && y < 8)
+            while (x < 7 && y < 7)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x + 1, y + 1] == null)
+                    ret[x + 1, y + 1] = true;
+                else if (GameField.field[x + 1, y + 1].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x + 1, y + 1] = true;
                     break;
                 }
                 else break;
@@ -262,13 +268,13 @@ namespace Chess
             }
             x = Location.X;
             y = Location.Y;
-            while (x < 8 && y >= 0)
+            while (x < 7 && y > 0)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x + 1, y - 1] == null)
+                    ret[x + 1, y - 1] = true;
+                else if (GameField.field[x + 1, y - 1].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x + 1, y - 1] = true;
                     break;
                 }
                 else break;
@@ -277,13 +283,13 @@ namespace Chess
             }
             x = Location.X;
             y = Location.Y;
-            while (x >= 0 && y >= 0)
+            while (x > 0 && y > 0)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x- 1, y - 1] == null)
+                    ret[x - 1, y - 1] = true;
+                else if (GameField.field[x - 1, y - 1].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x - 1, y - 1] = true;
                     break;
                 }
                 else break;
@@ -292,13 +298,13 @@ namespace Chess
             }
             x = Location.X;
             y = Location.Y;
-            while (x < 8 && y < 8)
+            while (x > 0 && y < 7)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
+                if (GameField.field[x - 1, y + 1] == null)
+                    ret[x - 1, y + 1] = true;
                 else if (GameField.field[x, y].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x - 1, y + 1] = true;
                     break;
                 }
                 else break;
@@ -321,7 +327,7 @@ namespace Chess
             }
         }
         
-    }
+    } 
     class Knight : IFigure //рыцарь на коняшке
     {
         public Point Location { get; set; }
@@ -338,24 +344,32 @@ namespace Chess
                 bitmap = new Bitmap("knight22.png");
         }
 
-        public bool[,] WhereCanIGo()
+        public bool[,] WhereCanIGo()// Конь тоже ходит правильно
         {
             bool[,] ret = new bool[8, 8];
-            if (Location.X -2 >= 0 && Location.Y -1 >= 0 && GameField.field[Location.X - 2, Location.Y - 1].player.color != player.color)
+            if (Location.X -2 >= 0 && Location.Y -1 >= 0 && 
+                (GameField.field[Location.X - 2, Location.Y - 1] == null || GameField.field[Location.X - 2, Location.Y - 1].player.color != player.color))
                 ret[Location.X -2, Location.Y - 1] = true;
-            if (Location.X - 2 >= 0 && Location.Y + 1 < 8 && GameField.field[Location.X - 2, Location.Y + 1].player.color != player.color)
+            if (Location.X - 2 >= 0 && Location.Y + 1 < 8 &&
+                (GameField.field[Location.X - 2, Location.Y + 1] == null || GameField.field[Location.X - 2, Location.Y + 1].player.color != player.color))
                 ret[Location.X - 2, Location.Y + 1] = true;
-            if (Location.X + 2 < 8 && Location.Y - 1 >= 0 && (GameField.field[Location.X + 2, Location.Y - 1] == null || GameField.field[Location.X + 2, Location.Y - 1].player.color != player.color))
+            if (Location.X + 2 < 8 && Location.Y - 1 >= 0 && 
+                (GameField.field[Location.X + 2, Location.Y - 1] == null || GameField.field[Location.X + 2, Location.Y - 1].player.color != player.color))
                 ret[Location.X + 2, Location.Y - 1] = true;
-            if (Location.X + 2 < 8 && Location.Y + 1 < 8 && GameField.field[Location.X + 2, Location.Y + 1].player.color != player.color)
+            if (Location.X + 2 < 8 && Location.Y + 1 < 8 && 
+                (GameField.field[Location.X + 2, Location.Y + 1] == null || GameField.field[Location.X + 2, Location.Y + 1].player.color != player.color))
                 ret[Location.X + 2, Location.Y + 1] = true;
-            if (Location.X + 1 < 8 && Location.Y + 2 < 8 && (GameField.field[Location.X + 1, Location.Y + 2] == null || GameField.field[Location.X + 1, Location.Y + 2].player.color != player.color))
+            if (Location.X + 1 < 8 && Location.Y + 2 < 8 && 
+                (GameField.field[Location.X + 1, Location.Y + 2] == null || GameField.field[Location.X + 1, Location.Y + 2].player.color != player.color))
                 ret[Location.X + 1, Location.Y + 2] = true;
-            if (Location.X + 1 < 8 && Location.Y - 2 >= 0 && (GameField.field[Location.X + 1, Location.Y - 2] == null || GameField.field[Location.X + 1, Location.Y - 2].player.color != player.color))
+            if (Location.X + 1 < 8 && Location.Y - 2 >= 0 && 
+                (GameField.field[Location.X + 1, Location.Y - 2] == null || GameField.field[Location.X + 1, Location.Y - 2].player.color != player.color))
                 ret[Location.X + 1, Location.Y - 2] = true;
-            if (Location.X - 1 >= 0 && Location.Y + 2 < 8 && (GameField.field[Location.X - 1, Location.Y + 2] == null || GameField.field[Location.X - 1, Location.Y + 2].player.color != player.color))
+            if (Location.X - 1 >= 0 && Location.Y + 2 < 8 && 
+                (GameField.field[Location.X - 1, Location.Y + 2] == null || GameField.field[Location.X - 1, Location.Y + 2].player.color != player.color))
                 ret[Location.X - 1, Location.Y + 2] = true;
-            if (Location.X - 1 >= 0 && Location.Y - 2 >= 0 && (GameField.field[Location.X - 1, Location.Y - 2] == null || GameField.field[Location.X - 1, Location.Y - 2].player.color != player.color))
+            if (Location.X - 1 >= 0 && Location.Y - 2 >= 0 && 
+                (GameField.field[Location.X - 1, Location.Y - 2] == null || GameField.field[Location.X - 1, Location.Y - 2].player.color != player.color))
                 ret[Location.X - 1, Location.Y - 2] = true;
             return ret;
         }
@@ -388,18 +402,18 @@ namespace Chess
                 bitmap = new Bitmap("bishop22.png");
         }
 
-        public bool[,] WhereCanIGo()
+        public bool[,] WhereCanIGo()// слоник тоже все смогнул
         {
             bool[,] ret = new bool[8, 8];
             var x = Location.X;
             var y = Location.Y;
-            while(x < 8 && y < 8)
+            while(x < 7 && y < 7)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x + 1, y + 1] == null)
+                    ret[x + 1, y + 1] = true;
+                else if (GameField.field[x + 1, y + 1].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x + 1, y + 1] = true;
                     break;
                 }
                 else break;
@@ -408,13 +422,13 @@ namespace Chess
             }
             x = Location.X;
             y = Location.Y;
-            while (x < 8 && y >= 0)
+            while (x < 7 && y > 0)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x + 1, y - 1] == null)
+                    ret[x + 1, y - 1] = true;
+                else if (GameField.field[x + 1, y - 1].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x + 1, y - 1] = true;
                     break;
                 }
                 else break;
@@ -423,13 +437,13 @@ namespace Chess
             }
             x = Location.X;
             y = Location.Y;
-            while (x >= 0 && y >= 0)
+            while (x > 0 && y > 0)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x - 1, y - 1] == null)
+                    ret[x - 1, y - 1] = true;
+                else if (GameField.field[x - 1, y - 1].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x - 1, y - 1] = true;
                     break;
                 }
                 else break;
@@ -438,13 +452,13 @@ namespace Chess
             }
             x = Location.X;
             y = Location.Y;
-            while (x < 8 && y < 8)
+            while (x > 0 && y < 7)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x - 1, y + 1] == null)
+                    ret[x - 1, y + 1] = true;
+                else if (GameField.field[x - 1, y + 1].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x - 1, y + 1] = true;
                     break;
                 }
                 else break;
@@ -482,18 +496,18 @@ namespace Chess
                 bitmap = new Bitmap("rook22.png");
         }
 
-        public bool[,] WhereCanIGo()
+        public bool[,] WhereCanIGo()// своих не бьем, чежих еб*м)
         {
             bool[,] ret = new bool[8, 8];
             var x = Location.X;
             var y = Location.Y;
-            while(x>=0)
+            while (x > 0)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x - 1, y] == null)
+                    ret[x - 1, y] = true;
+                else if (GameField.field[x - 1, y].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x - 1, y] = true;
                     break;
                 }
                 else break;
@@ -501,13 +515,13 @@ namespace Chess
             }
             x = Location.X;
             y = Location.Y;
-            while (x < 8)
+            while (x < 7)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x + 1, y] == null)
+                    ret[x + 1, y] = true;
+                else if (GameField.field[x + 1, y].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x + 1, y] = true;
                     break;
                 }
                 else break;
@@ -515,13 +529,13 @@ namespace Chess
             }
             x = Location.X;
             y = Location.Y;
-            while (y < 8)
+            while (y < 7)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x, y + 1] == null)
+                    ret[x, y + 1] = true;
+                else if (GameField.field[x, y + 1].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x, y + 1] = true;
                     break;
                 }
                 else break;
@@ -529,13 +543,13 @@ namespace Chess
             }
             x = Location.X;
             y = Location.Y;
-            while (y >=0)
+            while (y > 0)
             {
-                if (GameField.field[x, y] == null)
-                    ret[x, y] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                if (GameField.field[x, y - 1] == null)
+                    ret[x, y - 1] = true;
+                else if (GameField.field[x, y - 1].player.color != player.color)
                 {
-                    ret[x, y] = true;
+                    ret[x, y - 1] = true;
                     break;
                 }
                 else break;

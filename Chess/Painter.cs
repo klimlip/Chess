@@ -36,10 +36,10 @@ namespace Chess
             var a = ifi.WhereCanIGo();
             for (int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++)
-                    if (a[j, i] == false)
+                    if (a[i, j] == true)
                     {
-                        g.FillEllipse(Brushes.Red, 32 + i * 55, 32 + j * 55, 600, 600);
-                        //g.DrawEllipse(Pens.Red,  );
+                        g.DrawEllipse(Pens.Red, 32 + i * 55, 32 + j * 55, 60, 60);
+                        g.FillEllipse(Brushes.Red, 32 + i * 55, 32 + j * 55, 60, 60);
                     }
         }
 

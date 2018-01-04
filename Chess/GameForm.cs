@@ -55,7 +55,14 @@ namespace Chess
 
         private void btPlay_Click(object sender, EventArgs e)
         {
-            
+            GameField.field[3, 0].Step(6,3);
+            GameField.field[3, 7].Step(3, 0);
+            GameField.field[5, 0].Step(3, 2);
+            GameField.field[2, 7].Step(6, 3);
+            GameField.field[0, 0].Step(1,0);
+
+
+
             myGame.Draw(g);
 
         }
@@ -63,6 +70,13 @@ namespace Chess
         private void rbWhiteOnTop_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void GameForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            var a = new Point(e.X, e.Y);
+            var b = GameField.PointFromForm(a);
+            Painter.WhereCanFigureGo(g, GameField.field[b.X, b.Y]);
         }
     }
 }

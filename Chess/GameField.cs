@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Chess
 {
@@ -19,14 +20,14 @@ namespace Chess
             if (!WhiteOnTop)
                 for (int i = 0; i <= 7; i++)
                 {
-                    field[i, 1] = new Pawn(i, 1, false, player1);
-                    field[i, 6] = new Pawn(i, 6, true,  player2);
+                    //field[i, 1] = new Pawn(i, 1, false, player1);
+                    //field[i, 6] = new Pawn(i, 6, true,  player2);
                 }
             else
                 for (int i = 0; i <= 7; i++)
                 {
-                    field[i, 1] = new Pawn(i, 6, true, player1);
-                    field[i, 6] = new Pawn(i, 1, false, player2);
+                    //field[i, 1] = new Pawn(i, 6, true, player1);
+                    //field[i, 6] = new Pawn(i, 1, false, player2);
                 } // создаем пешки
             if (!WhiteOnTop)
                 for (int i = 0; i <= 7; i += 7)
@@ -80,6 +81,11 @@ namespace Chess
 
             }
             //создаем королей и ферзей
+        }
+
+        public static Point PointFromForm(Point inForm)
+        {
+            return new Point((inForm.X - 32) / 55, (inForm.Y - 32) / 55);
         }
     }
 }
