@@ -46,7 +46,7 @@ namespace Chess
                 {
                     field[i, 0] = new Knight(i, 0, player1);
                     field[i, 7] = new Knight(i, 7, player2);
-                }           
+                }
             else
                 for (int i = 1; i <= 7; i += 5)
                 {
@@ -58,7 +58,7 @@ namespace Chess
                 {
                     field[i, 0] = new Bishop(i, 0, player1);
                     field[i, 7] = new Bishop(i, 7, player2);
-                }                               
+                }
             else
                 for (int i = 2; i <= 6; i += 3)
                 {

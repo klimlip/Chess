@@ -129,9 +129,10 @@ namespace Chess
     class King : IFigure
     {
         public Point Location { get; set; }
-        public bool castlingPossible { get; set; }
+        private bool castlingPossible = true;
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
+        //public bool isUnderAttack = false;                ================ это надо продумать!!! ================
 
         public King(int X, int Y, Player player)
         {
@@ -144,7 +145,7 @@ namespace Chess
                 bitmap = new Bitmap("king22.png");
         }
 
-        public bool[,] WhereCanIGo() // нет рокировки
+        public bool[,] WhereCanIGo() // нет рокировки(она в методе шага)
         {
             bool[,] ret = new bool[8, 8];
             if (Location.X + 1 < 8 && Location.Y + 1 < 8 && (GameField.field[Location.X + 1, Location.Y + 1] == null || GameField.field[Location.X + 1, Location.Y + 1].player.color != player.color))
@@ -168,6 +169,28 @@ namespace Chess
 
         public bool Step(int X, int Y)
         {
+            if( castlingPossible && Math.Abs(X - Location.X) == 2 && Y == Location.Y) // вто здесь))
+            {
+                if (X == 6 && GameField.field[5, Location.Y] == null && GameField.field[6, Location.Y] == null) /// еще нужна проверка на наличие ладьи)
+                {
+                    GameField.field[X, Y] = GameField.field[Location.X, Location.Y];
+                    GameField.field[Location.X, Location.Y] = null;
+                    GameField.field[5, Location.Y] = GameField.field[7, Location.Y];
+                    GameField.field[7, Location.Y] = null;
+                    castlingPossible = false;
+                    return true;
+                }
+                if (X == 2 && GameField.field[1, Location.Y] == null && GameField.field[2, Location.Y] == null && GameField.field[3, Location.Y] == null)/// еще нужна проверка на наличие ладьи)
+                {
+                    GameField.field[X, Y] = GameField.field[Location.X, Location.Y];
+                    GameField.field[Location.X, Location.Y] = null;
+                    GameField.field[3, Location.Y] = GameField.field[0, Location.Y];
+                    GameField.field[0, Location.Y] = null;
+                    castlingPossible = false;
+                    return true; 
+                }
+                
+            }
             var a = WhereCanIGo();
             if (a[X, Y] == true)
             {
@@ -175,6 +198,7 @@ namespace Chess
                 Location = new Point(X, Y);
                 GameField.field[Location.X, Location.Y] = GameField.field[oldPoint.X, oldPoint.Y];
                 GameField.field[oldPoint.X, oldPoint.Y] = null;
+                castlingPossible = false;
                 return true;
             }
             else return false;
