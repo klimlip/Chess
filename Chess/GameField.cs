@@ -15,6 +15,9 @@ namespace Chess
         public static IFigure[,] field = new IFigure[8, 8];
         public void NewGame(bool firstIsHuman, bool secondIsHuman, bool WhiteOnTop)
         {
+            for (int i = 0; i < 8; i++)
+                for (int j = 0; j < 8; j++)
+                    field[i, j] = null;
             Player player1 = new Player(true, firstIsHuman);
             Player player2 = new Player(false, secondIsHuman);
             if (!WhiteOnTop)
