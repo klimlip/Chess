@@ -74,11 +74,20 @@ namespace Chess
                     var point = GameField.PointFromForm(new Point(e.X, e.Y));
                     IFigure b = myGame.SecondPartOfStep(point, g);
                     b.IsChosen = false;
+                    Draw(true);
                 }
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                if(ex.Message == "Белые победюкали!" || ex.Message == "Черные победюкали!")
+                {
+                    MessageBox.Show(ex.Message);
+                    bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
+                    myGame = new Game(firstIsHuman, secondIsHuman, WhiteOnTop, g);
+                    myGame.Draw(g);
+                }
+                else
+                    MessageBox.Show(ex.Message);
             }
 
             //Painter.WhereCanFigureGo(g, GameField.field[b.X, b.Y]);

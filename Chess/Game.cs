@@ -42,7 +42,7 @@ namespace Chess
             }
             else
             {
-                if(!isWhitesTurn)
+                if (!isWhitesTurn)
                 {
                     selectFigure = null;
                     throw new Exception("Ходят чёрные!");
@@ -56,13 +56,26 @@ namespace Chess
         {
             if (selectFigure != null)
             {
+                bool KingKilled = false;
+                if (GameField.field[p.X, p.Y] != null && GameField.field[p.X, p.Y] is King && GameField.field[p.X, p.Y].player != selectFigure.player)
+                    KingKilled = true;
                 var check = selectFigure.Step(p.X, p.Y);
                 if (check)
                 {
-                    Draw(g);
                     if (isWhitesTurn)
-                        isWhitesTurn = false;
-                    else isWhitesTurn = true;
+                    {
+                        if (KingKilled)
+                            throw new Exception("Белые победюкали!");
+                        else
+                            isWhitesTurn = false;
+                    }
+                    else
+                    {
+                        if (KingKilled)
+                            throw new Exception("Черные победюкали!");
+                        else
+                            isWhitesTurn = true;
+                    }
                     return selectFigure;
                 }
                 else throw new Exception("Надо переходить, а то ты объ*бался)");
