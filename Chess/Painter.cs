@@ -26,7 +26,24 @@ namespace Chess
                 if (f != null)
                 {
                     var p = LocationInForm(f);
+                    if (f.IsChosen)
+                    {
+                        SolidBrush sb = new SolidBrush(Color.FromArgb(50, 0, 255, 10));
+                        g.FillRectangle(Brushes.White, 30 + f.Location.X * 55, 30 + f.Location.Y * 55, 55, 55);
+                        g.DrawRectangle(Pens.Green, 30 + f.Location.X * 55, 30 + f.Location.Y * 55, 55, 55);
+                        g.FillRectangle(sb, 30 + f.Location.X * 55, 30 + f.Location.Y * 55, 55, 55);
+                        var PossibleSteps = f.WhereCanIGo();
+                        for (int i = 0; i < 8; i++)
+                            for (int j = 0; j < 8; j++)
+                                if (PossibleSteps[i, j])
+                                {
+                                    g.FillEllipse(Brushes.White, 47 + i * 55, 47 + j * 55, 20, 20);
+                                    g.DrawEllipse(Pens.Green, 47 + i * 55, 47 + j * 55, 20, 20);
+                                    g.FillEllipse(sb, 47 + i * 55, 47 + j * 55, 20, 20);
+                                }
+                    }
                     g.DrawImage(f.bitmap, p.X, p.Y, 51, 51);
+
                 }
             }
         }

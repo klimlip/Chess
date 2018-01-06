@@ -14,6 +14,7 @@ namespace Chess
         Bitmap bitmap { get; set; }
         bool[,] WhereCanIGo();
         bool Step(int X, int Y);
+        bool IsChosen { get; set; }
     }
     public class Pawn : IFigure
     {
@@ -22,9 +23,11 @@ namespace Chess
         private bool isOnTop;
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
+        public bool IsChosen { get; set; }
 
         public Pawn(int X, int Y, bool isOnTop, Player player)
         {
+            IsChosen = false;
             Location = new Point(X, Y);
             firstStep = true;
             this.isOnTop = isOnTop;
@@ -132,10 +135,12 @@ namespace Chess
         private bool castlingPossible = true;
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
+        public bool IsChosen { get; set; }
         //public bool isUnderAttack = false;                ================ это надо продумать!!! ================
 
         public King(int X, int Y, Player player)
         {
+            IsChosen = false;
             Location = new Point(X, Y);
             castlingPossible = true;
             this.player = player;
@@ -209,9 +214,11 @@ namespace Chess
         public Point Location { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
+        public bool IsChosen { get; set; }
 
         public Queen(int X, int Y, Player player)
         {
+            IsChosen = false;
             Location = new Point(X, Y);
             this.player = player;
             if (this.player.color == Player.Color.White)
@@ -363,9 +370,11 @@ namespace Chess
         public Point Location { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
+        public bool IsChosen { get; set; }
 
         public Knight(int X, int Y, Player player)
         {
+            IsChosen = false;
             Location = new Point(X, Y);
             this.player = player;
             if (this.player.color == Player.Color.White)
@@ -423,9 +432,11 @@ namespace Chess
         public Point Location { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
+        public bool IsChosen { get; set; }
 
         public Bishop(int X, int Y, Player player)
         {
+            IsChosen = false;
             Location = new Point(X, Y);
             this.player = player;
             if (this.player.color == Player.Color.White)
@@ -519,9 +530,11 @@ namespace Chess
         public Point Location { get; set; }
         public Player player { get; set; }
         public Bitmap bitmap { get; set; }
+        public bool IsChosen { get; set; }
 
         public Rook(int X, int Y, Player player)
         {
+            IsChosen = false;
             Location = new Point(X, Y);
             this.player = player;
             if (this.player.color == Player.Color.White)

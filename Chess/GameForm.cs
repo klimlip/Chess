@@ -26,8 +26,11 @@ namespace Chess
 
         public void Draw(bool IDontKnowWhyThisIsNecessary)
         {
-            g = CreateGraphics();
-            myGame.Draw(g);
+            if (IDontKnowWhyThisIsNecessary)
+            {
+                g = CreateGraphics();
+                myGame.Draw(g);
+            }
         }
 
         protected override CreateParams CreateParams
@@ -55,16 +58,22 @@ namespace Chess
         private void GameForm_MouseDown(object sender, MouseEventArgs e)
         {
             try
-            {
+            {                
                 if (e.Button == MouseButtons.Left)
                 {
                     var point = GameField.PointFromForm(e.Location);
-                    myGame.FirstPartOfStep(point);
+                    IFigure b = myGame.FirstPartOfStep(point);
+                    foreach (var f in GameField.field)
+                        if (f != null)
+                            f.IsChosen = false;
+                    b.IsChosen = true;
+                    Draw(true);
                 }
                 if (e.Button == MouseButtons.Right)
                 {
                     var point = GameField.PointFromForm(new Point(e.X, e.Y));
-                    myGame.SecondPartOfStep(point, g);
+                    IFigure b = myGame.SecondPartOfStep(point, g);
+                    b.IsChosen = false;
                 }
             }
             catch(Exception ex)

@@ -28,7 +28,7 @@ namespace Chess
             painter.Draw(g, GameField.field);
         }
 
-        public void FirstPartOfStep(Point p)
+        public IFigure FirstPartOfStep(Point p)
         {
             GameField.FindFigureFromPoint(p);
             if (selectFigure.player.color == Player.Color.White)
@@ -38,6 +38,7 @@ namespace Chess
                     selectFigure = null;
                     throw new Exception("Ходят белые!");
                 }
+                return selectFigure;
             }
             else
             {
@@ -46,11 +47,12 @@ namespace Chess
                     selectFigure = null;
                     throw new Exception("Ходят чёрные!");
                 }
+                return selectFigure;
             }
 
         }
 
-        public void SecondPartOfStep(Point p, Graphics g)
+        public IFigure SecondPartOfStep(Point p, Graphics g)
         {
             if (selectFigure != null)
             {
@@ -61,10 +63,11 @@ namespace Chess
                     if (isWhitesTurn)
                         isWhitesTurn = false;
                     else isWhitesTurn = true;
+                    return selectFigure;
                 }
-                else throw new Exception("Надо переходить, а то ты объ*балася)");
+                else throw new Exception("Надо переходить, а то ты объ*бался)");
             }
-            else throw new Exception("Выбериту фигуру");
+            else throw new Exception("Выберите фигуру");
         }
 
 
