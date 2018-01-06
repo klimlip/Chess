@@ -150,7 +150,7 @@ namespace Chess
                 bitmap = new Bitmap("king22.png");
         }
 
-        public bool[,] WhereCanIGo() // нет рокировки(она в методе шага)
+        public bool[,] WhereCanIGo()
         {
             bool[,] ret = new bool[8, 8];
             if (Location.X + 1 < 8 && Location.Y + 1 < 8 && (GameField.field[Location.X + 1, Location.Y + 1] == null || GameField.field[Location.X + 1, Location.Y + 1].player.color != player.color))
@@ -169,34 +169,43 @@ namespace Chess
                 ret[Location.X, Location.Y + 1] = true;
             if (Location.Y - 1 >= 0 && (GameField.field[Location.X, Location.Y - 1] == null || GameField.field[Location.X, Location.Y - 1].player.color != player.color))
                 ret[Location.X, Location.Y - 1] = true;
+            if (castlingPossible && GameField.field[5, Location.Y] == null && GameField.field[6, Location.Y] == null && GameField.field[7, Location.Y] is Rook)
+                ret[6, Location.Y] = true;
+            if (castlingPossible && GameField.field[1, Location.Y] == null && GameField.field[2, Location.Y] == null && GameField.field[3, Location.Y] == null && GameField.field[0, Location.Y] is Rook)
+                ret[2, Location.Y] = true;
             return ret;
         }
 
+        private void CastlingFalse(King k)
+        {
+            k.castlingPossible = false;
+        }
         public bool Step(int X, int Y)
         {
-            if( castlingPossible && Math.Abs(X - Location.X) == 2 && Y == Location.Y) // вто здесь))
-            {
-                if (X == 6 && GameField.field[5, Location.Y] == null && GameField.field[6, Location.Y] == null) /// еще нужна проверка на наличие ладьи)
-                {
-                    GameField.field[X, Y] = GameField.field[Location.X, Location.Y];
-                    GameField.field[Location.X, Location.Y] = null;
-                    GameField.field[5, Location.Y] = GameField.field[7, Location.Y];
-                    GameField.field[7, Location.Y] = null;
-                    castlingPossible = false;
-                    return true;
-                }
-                if (X == 2 && GameField.field[1, Location.Y] == null && GameField.field[2, Location.Y] == null && GameField.field[3, Location.Y] == null)/// еще нужна проверка на наличие ладьи)
-                {
-                    GameField.field[X, Y] = GameField.field[Location.X, Location.Y];
-                    GameField.field[Location.X, Location.Y] = null;
-                    GameField.field[3, Location.Y] = GameField.field[0, Location.Y];
-                    GameField.field[0, Location.Y] = null;
-                    castlingPossible = false;
-                    return true; 
-                }
-                
-            }
             var a = WhereCanIGo();
+            if ( castlingPossible && Math.Abs(X - Location.X) == 2 && a[X,Y])
+            {
+                if (X == 6)
+                {
+                    GameField.field[X, Y] = new King(X, Y, GameField.field[Location.X, Location.Y].player);
+                    GameField.field[Location.X, Location.Y] = null;
+                    GameField.field[5, Location.Y] = new Rook(5, Location.Y, GameField.field[7, Location.Y].player);
+                    GameField.field[7, Location.Y] = null;
+                    CastlingFalse((King)GameField.field[X, Y]);
+                }
+                if (X == 2)
+                {
+                    GameField.field[X, Y] = new King(X, Y, GameField.field[Location.X, Location.Y].player);
+                    GameField.field[Location.X, Location.Y] = null;
+                    GameField.field[3, Location.Y] = new Rook(3, Location.Y, GameField.field[7, Location.Y].player);
+                    GameField.field[0, Location.Y] = null;
+                    CastlingFalse((King)GameField.field[X, Y]);
+                }
+                if (GameField.field[X, Y].player.color == Player.Color.White)
+                    Game.king1 = (King)GameField.field[X, Y];
+                else Game.king2 = (King)GameField.field[X, Y];
+                return true;
+            }
             if (a[X, Y] == true)
             {
                 var oldPoint = Location;

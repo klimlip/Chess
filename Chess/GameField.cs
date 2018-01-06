@@ -73,15 +73,18 @@ namespace Chess
                 field[3, 0] = new Queen(3, 0, player1);
                 field[3, 7] = new Queen(3, 7, player2);
                 field[4, 0] = new King(4, 0, player1);
+                Game.king1 = (King)field[4, 0];
                 field[4, 7] = new King(4, 7, player2);
+                Game.king2 = (King)field[4, 7];
             }
             else
             {
                 field[3, 0] = new Queen(3, 7, player1);
                 field[3, 7] = new Queen(3, 0, player2);
                 field[4, 0] = new King(4, 7, player1);
+                Game.king1 = (King)field[4, 0];
                 field[4, 7] = new King(4, 0, player2);
-
+                Game.king2 = (King)field[4, 7];
             }
             //создаем королей и ферзей
         }

@@ -10,6 +10,8 @@ namespace Chess
     class Game
     {
         public static IFigure selectFigure;
+        public static King king1;
+        public static King king2;
         public static bool isWhitesTurn = true;
         public static GameField gameField;
         public static Painter painter;
@@ -31,24 +33,29 @@ namespace Chess
         public IFigure FirstPartOfStep(Point p)
         {
             GameField.FindFigureFromPoint(p);
-            if (selectFigure.player.color == Player.Color.White)
+            var can = CanIGoThisFigure();
+            if (can)
             {
-                if (isWhitesTurn)
+                if (selectFigure.player.color == Player.Color.White)
                 {
-                    selectFigure = null;
-                    throw new Exception("Ходят белые!");
+                    if (isWhitesTurn)
+                    {
+                        selectFigure = null;
+                        throw new Exception("Ходят белые!");
+                    }
+                    return selectFigure;
                 }
-                return selectFigure;
-            }
-            else
-            {
-                if (!isWhitesTurn)
+                else
                 {
-                    selectFigure = null;
-                    throw new Exception("Ходят чёрные!");
+                    if (!isWhitesTurn)
+                    {
+                        selectFigure = null;
+                        throw new Exception("Ходят чёрные!");
+                    }
+                    return selectFigure;
                 }
-                return selectFigure;
             }
+            else throw new Exception("Нельзы выбрать данную фигуру");
 
         }
 
@@ -81,6 +88,46 @@ namespace Chess
                 else throw new Exception("Надо переходить, а то ты объ*бался)");
             }
             else throw new Exception("Выберите фигуру");
+        }
+
+        public bool CanIGoThisFigure()////невсегдарабочаяхерня
+        {
+            GameField.field[selectFigure.Location.X, selectFigure.Location.Y] = null;
+            if (selectFigure.player.color == Player.Color.White)
+            {
+                foreach(var f in GameField.field)
+                {
+                    if (f != null && f.player.color == Player.Color.Black)
+                    {
+                        bool[,] a = new bool[8, 8];
+                        a = f.WhereCanIGo();
+                        if (a[king1.Location.X, king1.Location.Y])
+                        {
+                            GameField.field[selectFigure.Location.X, selectFigure.Location.Y] = selectFigure;
+                            return false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (var f in GameField.field)
+                {
+                    if (f != null && f.player.color == Player.Color.White)
+                    {
+                        bool[,] a = new bool[8, 8];
+                        a = f.WhereCanIGo();
+                        if (a[king2.Location.X, king2.Location.Y])
+                        {
+                            GameField.field[selectFigure.Location.X, selectFigure.Location.Y] = selectFigure;
+                            return false;
+                        }
+                    }
+
+                }
+            }
+            GameField.field[selectFigure.Location.X, selectFigure.Location.Y] = selectFigure;
+            return true;
         }
 
 
