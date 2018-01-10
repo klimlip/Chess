@@ -130,6 +130,14 @@ namespace Chess
             return true;
         }
 
-
+        private bool IfCheck(King king)
+        {
+            foreach (var figure in GameField.field)
+            {
+                if (figure.player == king.player) continue;
+                if (figure.WhereCanIGo()[king.Location.X, king.Location.Y]) return true; ;
+            }
+            return false;
+        }
     }
 }
