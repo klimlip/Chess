@@ -80,6 +80,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(230, 131);
+            this.ControlBox = false;
             this.Controls.Add(this.buttpn_Rook);
             this.Controls.Add(this.button_Bishop);
             this.Controls.Add(this.button_Knight);

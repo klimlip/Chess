@@ -10,6 +10,7 @@ namespace Chess
     class Game
     {
         public static IFigure selectFigure;
+        private bool firstStep;
         public static King king1;
         public static King king2;
         public static bool isWhitesTurn = true;
@@ -33,6 +34,7 @@ namespace Chess
         public IFigure FirstPartOfStep(Point p)
         {
             GameField.FindFigureFromPoint(p);
+            firstStep = true;
             var can = CanIGoThisFigure();
             if (can)
             {
@@ -67,7 +69,7 @@ namespace Chess
                 if (GameField.field[p.X, p.Y] != null && GameField.field[p.X, p.Y] is King && GameField.field[p.X, p.Y].player != selectFigure.player)
                     KingKilled = true;
                 var check = selectFigure.Step(p.X, p.Y);
-                if (check)
+                if (check && firstStep)
                 {
                     if (isWhitesTurn)
                     {
@@ -83,9 +85,10 @@ namespace Chess
                         else
                             isWhitesTurn = true;
                     }
+                    firstStep = false;
                     return selectFigure;
                 }
-                else throw new Exception("Надо переходить, а то ты объ*бался)");
+                else throw new Exception("Фигура так не ходит");
             }
             else throw new Exception("Выберите фигуру");
         }
