@@ -346,7 +346,7 @@ namespace Chess
             {
                 if (GameField.field[x - 1, y + 1] == null)
                     ret[x - 1, y + 1] = true;
-                else if (GameField.field[x, y].player.color != player.color)
+                else if (GameField.field[x - 1, y + 1].player.color != player.color)
                 {
                     ret[x - 1, y + 1] = true;
                     break;

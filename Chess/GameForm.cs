@@ -60,46 +60,35 @@ namespace Chess
 
         private void GameForm_MouseDown(object sender, MouseEventArgs e)
         {
-            try
-            {                
-                if (e.Button == MouseButtons.Left)
-                {
-                    var point = GameField.PointFromForm(e.Location);
-                    IFigure b = myGame.FirstPartOfStep(point);
-                    foreach (var f in GameField.field)
-                        if (f != null)
-                            f.IsChosen = false;
-                    b.IsChosen = true;
-                    this.Invalidate();
-
-                    //Draw(true);
-                }
-                if (e.Button == MouseButtons.Right)
-                {
-                    var point = GameField.PointFromForm(new Point(e.X, e.Y));
-                    IFigure b = myGame.SecondPartOfStep(point, g);
-                    b.IsChosen = false;
-                    this.Invalidate();
-                    //Draw(true);
-                }
-            }
-            catch(Exception ex)
+            string s = "";
+            if (((Game.isWhitesTurn && rbPlayer1IsHuman.Checked) || (!Game.isWhitesTurn && rbPlayer2IsHuman.Checked)) && e.Button == MouseButtons.Left)
             {
-                if(ex.Message == "Белые победюкали!" || ex.Message == "Черные победюкали!")
-                {
-                    MessageBox.Show(ex.Message);
-                    bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
-                    myGame = new Game(firstIsHuman, secondIsHuman, WhiteOnTop, g);
-                    this.Invalidate();
+                var point = GameField.PointFromForm(e.Location);
+                IFigure b = myGame.FirstPartOfStep(point, ref s);
+                foreach (var f in GameField.field)
+                    if (f != null)
+                        f.IsChosen = false;
+                if( b != null)
+                    b.IsChosen = true;
+                this.Invalidate();
 
-                    //myGame.Draw(g);
-                }
-                else
-                    MessageBox.Show(ex.Message);
+                //Draw(true);
             }
-
-            //Painter.WhereCanFigureGo(g, GameField.field[b.X, b.Y]);
+            if (e.Button == MouseButtons.Right)
+            {
+                var point = GameField.PointFromForm(new Point(e.X, e.Y));
+                IFigure b = myGame.SecondPartOfStep(point, g, ref s);
+                if(b!= null)
+                    b.IsChosen = false;
+                this.Invalidate();
+                //Draw(true);
+            }
+            if (s != "")
+                MessageBox.Show(s);
         }
+
+        //Painter.WhereCanFigureGo(g, GameField.field[b.X, b.Y]);
+   
 
         private void rbWhiteOnTop_CheckedChanged(object sender, EventArgs e)
         {

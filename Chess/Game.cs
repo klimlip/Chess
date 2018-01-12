@@ -31,9 +31,11 @@ namespace Chess
             painter.Draw(g, GameField.field);
         }
 
-        public IFigure FirstPartOfStep(Point p)
+        public IFigure FirstPartOfStep(Point p, ref string s)
         {
-            GameField.FindFigureFromPoint(p);
+            GameField.FindFigureFromPoint(p, ref s);
+            if (s != "")
+                return null;
             firstStep = true;
             var can = CanIGoThisFigure();
             if (can)
@@ -43,7 +45,7 @@ namespace Chess
                     if (isWhitesTurn)
                     {
                         selectFigure = null;
-                        throw new Exception("Ходят белые!");
+                        s = "Ходят белые!";
                     }
                     return selectFigure;
                 }
@@ -52,16 +54,21 @@ namespace Chess
                     if (!isWhitesTurn)
                     {
                         selectFigure = null;
-                        throw new Exception("Ходят чёрные!");
+                        s = "Ходят чёрные!";
                     }
                     return selectFigure;
                 }
             }
-            else throw new Exception("Нельзы выбрать данную фигуру");
+            else
+            {
+                selectFigure = null;
+                s = "Нельзы выбрать данную фигуру";
+                return null;
+            }
 
         }
 
-        public IFigure SecondPartOfStep(Point p, Graphics g)
+        public IFigure SecondPartOfStep(Point p, Graphics g, ref string s)
         {
             if (selectFigure != null && firstStep)
             {
@@ -75,9 +82,14 @@ namespace Chess
                     firstStep = false;
                     return selectFigure;
                 }
-                throw new Exception("Фигура так не ходит");
+                s = "Фигура так не ходит";
+                return null;
             }
-            else throw new Exception("Выберите фигуру");
+            else
+            {
+                s = "Выберите фигуру";
+                return null;
+            }
         }
 
         public void ComputerDoStep(Graphics g, bool isFirstComp, bool isSecondComp)

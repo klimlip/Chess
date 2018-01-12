@@ -94,7 +94,7 @@ namespace Chess
             return new Point((inForm.X - 32) / 55, (inForm.Y - 32) / 55);
         }
 
-        public static void FindFigureFromPoint(Point p)
+        public static void FindFigureFromPoint(Point p, ref string s)
         {
             for( int i = 0; i < 8; i++)
                 for( int j = 0; j < 8; j++)
@@ -106,7 +106,7 @@ namespace Chess
                     }
                 }
             if (Game.selectFigure == null)
-                throw new Exception("Слепой? Фигур не видишь что-ли?");
+                s = "Слепой? Фигур не видишь что-ли?";
         }
     }
 }
