@@ -45,14 +45,17 @@ namespace Chess
 
         private void GameForm_Paint(object sender, PaintEventArgs e)
         {
-            Draw(true);
+            myGame.Draw(e.Graphics);
+            //Draw(true);
         }
 
         private void btPlay_Click(object sender, EventArgs e)
         {
             bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
             myGame = new Game(firstIsHuman, secondIsHuman, WhiteOnTop, g);
-            myGame.Draw(g);
+            g = CreateGraphics();
+            //myGame.Draw(g);
+            this.Invalidate();
         }
 
         private void GameForm_MouseDown(object sender, MouseEventArgs e)
@@ -67,14 +70,17 @@ namespace Chess
                         if (f != null)
                             f.IsChosen = false;
                     b.IsChosen = true;
-                    Draw(true);
+                    this.Invalidate();
+
+                    //Draw(true);
                 }
                 if (e.Button == MouseButtons.Right)
                 {
                     var point = GameField.PointFromForm(new Point(e.X, e.Y));
                     IFigure b = myGame.SecondPartOfStep(point, g);
                     b.IsChosen = false;
-                    Draw(true);
+                    this.Invalidate();
+                    //Draw(true);
                 }
             }
             catch(Exception ex)
@@ -84,7 +90,9 @@ namespace Chess
                     MessageBox.Show(ex.Message);
                     bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
                     myGame = new Game(firstIsHuman, secondIsHuman, WhiteOnTop, g);
-                    myGame.Draw(g);
+                    this.Invalidate();
+
+                    //myGame.Draw(g);
                 }
                 else
                     MessageBox.Show(ex.Message);
@@ -97,7 +105,20 @@ namespace Chess
         {
             bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
             myGame = new Game(firstIsHuman, secondIsHuman, WhiteOnTop, g);
-            myGame.Draw(g);
+            this.Invalidate();
+
+            //myGame.Draw(g);
+        }
+
+        private void button_CompGo_Click(object sender, EventArgs e)
+        {
+            g = CreateGraphics();
+            bool firstPlayerIsComp = false, secondPlayerIsComp = false;
+            if (rbPlayer1IsComputer.Checked)
+                firstPlayerIsComp = true;
+            if (rbPlayer2IsComputer.Checked)
+                secondPlayerIsComp = true;
+            myGame.ComputerDoStep(g, firstPlayerIsComp, secondPlayerIsComp);
         }
     }
 }

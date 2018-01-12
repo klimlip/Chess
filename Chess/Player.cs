@@ -15,9 +15,7 @@ namespace Chess
         }
 
         public Color color;
-        public bool isHuman { get; private set; }  // true - first 
-        //какая-то хрень с человеком, он должен знать, человек он или нет и знать, белый он или черный
-
+        public bool isHuman { get; private set; }
         public Player(bool isFirst, bool isHuman)
         {
             if (isFirst)

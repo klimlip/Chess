@@ -40,6 +40,7 @@
             this.rbPlayer2IsHuman = new System.Windows.Forms.RadioButton();
             this.btNewGame = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button_CompGo = new System.Windows.Forms.Button();
             this.gbColor.SuspendLayout();
             this.gbPlayer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -149,7 +150,7 @@
             // btNewGame
             // 
             this.btNewGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btNewGame.Location = new System.Drawing.Point(533, 304);
+            this.btNewGame.Location = new System.Drawing.Point(533, 249);
             this.btNewGame.Name = "btNewGame";
             this.btNewGame.Size = new System.Drawing.Size(139, 42);
             this.btNewGame.TabIndex = 4;
@@ -157,11 +158,22 @@
             this.btNewGame.UseVisualStyleBackColor = true;
             this.btNewGame.Click += new System.EventHandler(this.btPlay_Click);
             // 
+            // button_CompGo
+            // 
+            this.button_CompGo.Location = new System.Drawing.Point(533, 297);
+            this.button_CompGo.Name = "button_CompGo";
+            this.button_CompGo.Size = new System.Drawing.Size(139, 115);
+            this.button_CompGo.TabIndex = 5;
+            this.button_CompGo.Text = "Компьютер ходи";
+            this.button_CompGo.UseVisualStyleBackColor = true;
+            this.button_CompGo.Click += new System.EventHandler(this.button_CompGo_Click);
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 501);
+            this.Controls.Add(this.button_CompGo);
             this.Controls.Add(this.btNewGame);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbPlayer1);
@@ -193,6 +205,7 @@
         private System.Windows.Forms.RadioButton rbPlayer2IsHuman;
         private System.Windows.Forms.Button btNewGame;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button_CompGo;
     }
 }
 

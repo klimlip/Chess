@@ -107,8 +107,6 @@ namespace Chess
                 }
             if (Game.selectFigure == null)
                 throw new Exception("Слепой? Фигур не видишь что-ли?");
-
-
         }
     }
 }

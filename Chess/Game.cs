@@ -63,35 +63,95 @@ namespace Chess
 
         public IFigure SecondPartOfStep(Point p, Graphics g)
         {
-            if (selectFigure != null)
+            if (selectFigure != null && firstStep)
             {
-                bool KingKilled = false;
-                if (GameField.field[p.X, p.Y] != null && GameField.field[p.X, p.Y] is King && GameField.field[p.X, p.Y].player != selectFigure.player)
-                    KingKilled = true;
                 var check = selectFigure.Step(p.X, p.Y);
                 if (check && firstStep)
                 {
                     if (isWhitesTurn)
-                    {
-                        if (KingKilled)
-                            throw new Exception("Белые победюкали!");
-                        else
-                            isWhitesTurn = false;
-                    }
+                        isWhitesTurn = false;
                     else
-                    {
-                        if (KingKilled)
-                            throw new Exception("Черные победюкали!");
-                        else
-                            isWhitesTurn = true;
-                    }
+                        isWhitesTurn = true;
                     firstStep = false;
                     return selectFigure;
                 }
-                else throw new Exception("Фигура так не ходит");
+                throw new Exception("Фигура так не ходит");
             }
             else throw new Exception("Выберите фигуру");
         }
+
+        public void ComputerDoStep(Graphics g, bool isFirstComp, bool isSecondComp)
+        {
+            Random rand = new Random();
+            int x, y;
+            bool check = false;
+            bool[,] a;
+            List<Point> listOfInde = new List<Point>();
+            if (isWhitesTurn && isFirstComp)
+            {
+                do
+                {
+                    do
+                    {
+                        do
+                        {
+                            x = rand.Next(8);
+                            y = rand.Next(8);
+                        }
+                        while (GameField.field[x, y] == null || GameField.field[x, y].player.color == Player.Color.White);
+                        selectFigure = GameField.field[x, y];
+                        a = selectFigure.WhereCanIGo();
+                    } while (!HaveTrue(a));
+
+                    var matr = GameField.field[x, y].WhereCanIGo();
+
+                    for (int i = 0; i < 8; i++)
+                        for (int j = 0; j < 8; j++)
+                            if (matr[j, i])
+                                listOfInde.Add(new Point(j, i));
+
+                    int randomPoint = rand.Next(listOfInde.Count);
+
+                    check = GameField.field[x, y].Step(listOfInde[randomPoint].X, listOfInde[randomPoint].Y);
+
+                } while (!check);
+
+                isWhitesTurn = false;
+                painter.Draw(g, GameField.field);
+            }
+            else if(!isWhitesTurn && isSecondComp)
+            {
+                do
+                {
+                    do
+                    {
+                        do
+                        {
+                            x = rand.Next(8);
+                            y = rand.Next(8);
+                        }
+                        while (GameField.field[x, y] == null || GameField.field[x, y].player.color == Player.Color.Black);
+                        selectFigure = GameField.field[x, y];
+                        a = selectFigure.WhereCanIGo();
+                    } while (!HaveTrue(a));
+
+                    var matr = GameField.field[x, y].WhereCanIGo();
+
+                    for (int i = 0; i < 8; i++)
+                        for (int j = 0; j < 8; j++)
+                            if (matr[j, i])
+                                listOfInde.Add(new Point(j, i));
+
+                    int randomPoint = rand.Next(listOfInde.Count);
+
+                    check = GameField.field[x, y].Step(listOfInde[randomPoint].X, listOfInde[randomPoint].Y);
+
+                } while (!check);
+                isWhitesTurn = true;
+                painter.Draw(g, GameField.field);
+            }
+        }
+        
 
         public bool CanIGoThisFigure()////невсегдарабочаяхерня
         {
@@ -141,6 +201,15 @@ namespace Chess
                 if (figure.WhereCanIGo()[king.Location.X, king.Location.Y]) return true; ;
             }
             return false;
+        }
+
+        public static bool HaveTrue(bool[,] matr)
+        {
+            foreach (var a in matr)
+                if (a)
+                    return true;
+            return false;
+
         }
     }
 }

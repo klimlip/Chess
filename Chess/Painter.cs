@@ -48,17 +48,17 @@ namespace Chess
             }
         }
 
-        public static void WhereCanFigureGo(Graphics g, IFigure ifi)
-        {
-            var a = ifi.WhereCanIGo();
-            for (int i = 0; i < 8; i++)
-                for (int j = 0; j < 8; j++)
-                    if (a[i, j] == true)
-                    {
-                        g.DrawEllipse(Pens.Red, 32 + i * 55, 32 + j * 55, 60, 60);
-                        g.FillEllipse(Brushes.Red, 32 + i * 55, 32 + j * 55, 60, 60);
-                    }
-        }
+        //public static void WhereCanFigureGo(Graphics g, IFigure ifi)
+        //{
+        //    var a = ifi.WhereCanIGo();
+        //    for (int i = 0; i < 8; i++)
+        //        for (int j = 0; j < 8; j++)
+        //            if (a[i, j] == true)
+        //            {
+        //                g.DrawEllipse(Pens.Red, 32 + i * 55, 32 + j * 55, 60, 60);
+        //                g.FillEllipse(Brushes.Red, 32 + i * 55, 32 + j * 55, 60, 60);
+        //            }
+        //}
 
         private static Point LocationInForm(IFigure f)
         {
