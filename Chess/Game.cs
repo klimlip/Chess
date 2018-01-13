@@ -76,9 +76,17 @@ namespace Chess
                 if (check && firstStep)
                 {
                     if (isWhitesTurn)
+                    {
                         isWhitesTurn = false;
+                        if (IfCheck(king2, GameField.field))
+                            s = "Черным шах";
+                    }
                     else
+                    {
                         isWhitesTurn = true;
+                        if (IfCheck(king1, GameField.field))
+                            s = "Белым шах";
+                    }
                     firstStep = false;
                     return selectFigure;
                 }
@@ -163,54 +171,35 @@ namespace Chess
                 painter.Draw(g, GameField.field);
             }
         }
-        
+
 
         public bool CanIGoThisFigure()////невсегдарабочаяхерня
         {
-            GameField.field[selectFigure.Location.X, selectFigure.Location.Y] = null;
+            bool a;
+            IFigure[,] tmpField = new IFigure[8, 8];
+            foreach (var f in GameField.field)
+            {
+                if (f != null)
+                    tmpField[f.Location.X, f.Location.Y] = f;
+            }
+            tmpField[selectFigure.Location.X, selectFigure.Location.Y] = null;
             if (selectFigure.player.color == Player.Color.White)
             {
-                foreach(var f in GameField.field)
-                {
-                    if (f != null && f.player.color == Player.Color.Black)
-                    {
-                        bool[,] a = new bool[8, 8];
-                        a = f.WhereCanIGo();
-                        if (a[king1.Location.X, king1.Location.Y])
-                        {
-                            GameField.field[selectFigure.Location.X, selectFigure.Location.Y] = selectFigure;
-                            return false;
-                        }
-                    }
-                }
+                a = IfCheck(king2, tmpField);
             }
             else
             {
-                foreach (var f in GameField.field)
-                {
-                    if (f != null && f.player.color == Player.Color.White)
-                    {
-                        bool[,] a = new bool[8, 8];
-                        a = f.WhereCanIGo();
-                        if (a[king2.Location.X, king2.Location.Y])
-                        {
-                            GameField.field[selectFigure.Location.X, selectFigure.Location.Y] = selectFigure;
-                            return false;
-                        }
-                    }
-
-                }
+                a = IfCheck(king1, tmpField);
             }
-            GameField.field[selectFigure.Location.X, selectFigure.Location.Y] = selectFigure;
-            return true;
+            return a;
         }
 
-        private bool IfCheck(King king)
+        public static bool IfCheck(King king, IFigure[,] field)
         {
-            foreach (var figure in GameField.field)
+            foreach (var figure in field)
             {
-                if (figure.player == king.player) continue;
-                if (figure.WhereCanIGo()[king.Location.X, king.Location.Y]) return true; ;
+                if (figure == null || figure.player == king.player) continue;
+                if (figure.WhereCanIGo()[king.Location.X, king.Location.Y]) return true;
             }
             return false;
         }

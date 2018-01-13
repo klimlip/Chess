@@ -40,34 +40,8 @@ namespace Chess
 
         public bool Step(int X, int Y)
         {
-            #region
-            //if (!isOnTop)
-            //{
-            //    if (firstStep && Y > 1 && Y <= 3 && Location.X == X && GameField.field[X, Y] == null)
-            //    {
-            //        ToDoStep(X, Y);
-            //        firstStep = false;
-            //    }
-            //    else if (Y - Location.Y == 1 && Location.X == X && GameField.field[X, Y] == null)
-            //        ToDoStep(X, Y);
-            //    else if (Y - Location.Y == 1 && Math.Abs(X - Location.X) == 1 && GameField.field[X, Y].player.color != player.color)
-            //        ToDoStep(X, Y);
-            //}
-            //else
-            //{
-            //    if (firstStep && Y < 6 && Y >= 4 && Location.X == X && GameField.field[X, Y] == null)
-            //    {
-            //        ToDoStep(X, Y);
-            //        firstStep = false;
-            //    }
-            //    else if (Location.Y - Y == 1 && Location.X == X && GameField.field[X, Y] == null)
-            //        ToDoStep(X, Y);
-            //    else if (Location.Y - Y == 1 && Math.Abs(Location.X - X) == 1 && GameField.field[X, Y].player.color != player.color)
-            //        ToDoStep(X, Y);
-            //}
-#endregion
             var a = WhereCanIGo();
-            if (a[X, Y] == true)
+            if (a[X, Y] == true && !WillBeCheck())
                 ToDoStep(X, Y);
             else return false;
             if ((!isOnTop && Location.Y == 7 ) || (isOnTop && Location.Y == 0))
@@ -127,6 +101,23 @@ namespace Chess
             Location = new Point(X, Y);
             GameField.field[Location.X, Location.Y] = GameField.field[oldPoint.X, oldPoint.Y];
             GameField.field[oldPoint.X, oldPoint.Y] = null;
+        }
+
+        private bool WillBeCheck()
+        {
+            bool check;
+            IFigure[,] tmpField = new IFigure[8, 8];
+            foreach(var f in GameField.field)
+            {
+                if(f != null)
+                    tmpField[f.Location.X, f.Location.Y] = f;
+            }
+            var tmpFigure = Game.selectFigure;
+            tmpField[tmpFigure.Location.X, tmpFigure.Location.Y] = null;
+            if (tmpFigure.player.color == Player.Color.White)
+                check = Game.IfCheck(Game.king1, tmpField);
+            else check = Game.IfCheck(Game.king2, tmpField);
+            return check;
         }
     }
     class King : IFigure
