@@ -19,8 +19,8 @@ namespace Chess
         {
             InitializeComponent();
             g = CreateGraphics();
-            bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
-            myGame = new Game(firstIsHuman, secondIsHuman, WhiteOnTop, g);
+            bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked;
+            myGame = new Game(firstIsHuman, secondIsHuman, g);
         }
 
 
@@ -51,8 +51,8 @@ namespace Chess
 
         private void btPlay_Click(object sender, EventArgs e)
         {
-            bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
-            myGame = new Game(firstIsHuman, secondIsHuman, WhiteOnTop, g);
+            bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked;
+            myGame = new Game(firstIsHuman, secondIsHuman,g);
             g = CreateGraphics();
             //myGame.Draw(g);
             this.Invalidate();
@@ -92,8 +92,8 @@ namespace Chess
 
         private void rbWhiteOnTop_CheckedChanged(object sender, EventArgs e)
         {
-            bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked, WhiteOnTop = rbWhiteOnTop.Checked;
-            myGame = new Game(firstIsHuman, secondIsHuman, WhiteOnTop, g);
+            bool firstIsHuman = rbPlayer1IsHuman.Checked, secondIsHuman = rbPlayer2IsHuman.Checked;
+            myGame = new Game(firstIsHuman, secondIsHuman, g);
             this.Invalidate();
 
             //myGame.Draw(g);

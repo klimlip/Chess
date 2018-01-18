@@ -128,22 +128,22 @@
             // rbPlayer2IsComputer
             // 
             this.rbPlayer2IsComputer.AutoSize = true;
-            this.rbPlayer2IsComputer.Checked = true;
             this.rbPlayer2IsComputer.Location = new System.Drawing.Point(7, 43);
             this.rbPlayer2IsComputer.Name = "rbPlayer2IsComputer";
             this.rbPlayer2IsComputer.Size = new System.Drawing.Size(97, 17);
             this.rbPlayer2IsComputer.TabIndex = 1;
-            this.rbPlayer2IsComputer.TabStop = true;
             this.rbPlayer2IsComputer.Text = "Компьютером";
             this.rbPlayer2IsComputer.UseVisualStyleBackColor = true;
             // 
             // rbPlayer2IsHuman
             // 
             this.rbPlayer2IsHuman.AutoSize = true;
+            this.rbPlayer2IsHuman.Checked = true;
             this.rbPlayer2IsHuman.Location = new System.Drawing.Point(7, 20);
             this.rbPlayer2IsHuman.Name = "rbPlayer2IsHuman";
             this.rbPlayer2IsHuman.Size = new System.Drawing.Size(83, 17);
             this.rbPlayer2IsHuman.TabIndex = 0;
+            this.rbPlayer2IsHuman.TabStop = true;
             this.rbPlayer2IsHuman.Text = "Человеком";
             this.rbPlayer2IsHuman.UseVisualStyleBackColor = true;
             // 
@@ -179,7 +179,7 @@
             this.Controls.Add(this.gbPlayer1);
             this.Controls.Add(this.gbColor);
             this.Name = "GameForm";
-            this.Text = "Сыграем?";
+            this.Text = "n";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameForm_Paint);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GameForm_MouseDown);
             this.gbColor.ResumeLayout(false);

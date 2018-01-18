@@ -16,12 +16,11 @@ namespace Chess
         public static bool isWhitesTurn = true;
         public static GameField gameField;
         public static Painter painter;
-
-        public Game(bool firstIsHuman, bool secondIsHuman, bool WhiteOnTop, Graphics g)
+        public Game(bool firstIsHuman, bool secondIsHuman, Graphics g)
         {
             gameField = new GameField();
             painter = new Painter();
-            gameField.NewGame(firstIsHuman, secondIsHuman, WhiteOnTop);
+            gameField.NewGame(firstIsHuman, secondIsHuman);
             painter.Draw(g, GameField.field);
             isWhitesTurn = true;
         }
@@ -37,44 +36,75 @@ namespace Chess
             if (s != "")
                 return null;
             firstStep = true;
-            var can = CanIGoThisFigure();
-            if (can)
+            if (selectFigure.player.color == Player.Color.White)
             {
-                if (selectFigure.player.color == Player.Color.White)
+                if (!isWhitesTurn)
                 {
-                    if (isWhitesTurn)
-                    {
-                        selectFigure = null;
-                        s = "Ходят белые!";
-                    }
-                    return selectFigure;
+                    selectFigure = null;
+                    s = "Ходят чёрные!";
+
                 }
-                else
-                {
-                    if (!isWhitesTurn)
-                    {
-                        selectFigure = null;
-                        s = "Ходят чёрные!";
-                    }
-                    return selectFigure;
-                }
+                return selectFigure;
             }
             else
             {
-                selectFigure = null;
-                s = "Нельзы выбрать данную фигуру";
-                return null;
+                if (isWhitesTurn)
+                {
+                    selectFigure = null;
+                    s = "Ходят белые!";
+
+                }
+                return selectFigure;
             }
 
         }
 
         public IFigure SecondPartOfStep(Point p, Graphics g, ref string s)
         {
+            var tmpLocation = selectFigure.Location;
             if (selectFigure != null && firstStep)
             {
+                var tmpFigure2 = GameField.field[p.X, p.Y];
                 var check = selectFigure.Step(p.X, p.Y);
                 if (check && firstStep)
                 {
+                    if (selectFigure.player.color == Player.Color.White)
+                    {
+                        if (IfCheck(king1, GameField.field))
+                        {
+                            var tmpFigure = selectFigure;
+                            GameField.field[selectFigure.Location.X, selectFigure.Location.Y] = tmpFigure2;
+                            tmpFigure.Location = tmpLocation;
+                            GameField.field[tmpLocation.X, tmpLocation.Y] = tmpFigure;
+                            selectFigure = null;
+                            painter.Draw(g, GameField.field);
+                            s = "Так ходить нельзя!";
+                            firstStep = false;
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        if (IfCheck(king2, GameField.field))
+                        {
+                            var tmpFigure = selectFigure;
+                            GameField.field[selectFigure.Location.X, selectFigure.Location.Y] = tmpFigure2;
+                            tmpFigure.Location = tmpLocation;
+                            GameField.field[tmpLocation.X, tmpLocation.Y] = tmpFigure;
+                            selectFigure = null;
+                            painter.Draw(g, GameField.field);
+                            s = "Так ходить нельзя!";
+                            firstStep = false;
+                            return null;
+                        }
+                    }
+                    //if (selectFigure.player.color == Player.Color.White)
+                    //{
+                    //    foreach(var f in GameField.field)
+                    //    {
+                    //        if(f.player.color == Player.Color.)
+                    //    }
+                    //}
                     if (isWhitesTurn)
                     {
                         isWhitesTurn = false;
@@ -87,6 +117,8 @@ namespace Chess
                         if (IfCheck(king1, GameField.field))
                             s = "Белым шах";
                     }
+
+                    
                     firstStep = false;
                     return selectFigure;
                 }
